@@ -82,8 +82,6 @@ export default function UserDrawer () {
 
   return (
     <>
-      {/* This part is competition menu title */}
-
       <ListItemButton
         sx={{
           margin: '1px 5px',

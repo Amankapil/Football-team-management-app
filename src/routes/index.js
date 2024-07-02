@@ -14,6 +14,10 @@ import FavouritePage from '../pages/FavouritePage'
 import NewsPage from '../pages/NewsPage'
 import AccountPage from '../pages/AccountPage'
 import TeamRegistrationForm from '../pages/Addteam/TeamRegistrationForm'
+
+import ForgotPassword from '../components/CustomModal/ForgotPassword'
+import Createteam from '../pages/CreateTeam/TeamManager'
+import TeamManager from '../pages/AdminPage/TeamManager'
 // import TeamPage from "../pages/UserPage/teams";
 
 // import AuthRoutes from "./AuthRoutes.jsx";
@@ -45,18 +49,21 @@ function MainRoutes () {
     <div>
       {open && <Landing></Landing>}
       {!open && (
-        <div>
+        <div className='1stkj'>
           {!BanRoutes.includes(pathName) && <Appbar />}
           <React.Suspense fallback={<Loading></Loading>}>
             <Routes>
-              {/* <CommonRoutes /> */}
-              {/* <ManagerRoutes /> */}
-              {/* <AdminRoutes /> */}
               <Route exact path='/' element={<UserPage></UserPage>}></Route>
+              <Route exact path='/addteam' element={<Createteam />}></Route>
               <Route
                 exact
-                path='/addteam'
-                element={<TeamRegistrationForm />}
+                path='/teammanager'
+                element={<TeamManager />}
+              ></Route>
+              <Route
+                exact
+                path='/forget-password'
+                element={<ForgotPassword />}
               ></Route>
               <Route
                 exact

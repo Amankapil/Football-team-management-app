@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 
@@ -59,9 +59,9 @@ export default function CustomizedDialogs () {
       return
     }
     dispatch(setAuth({ email }))
-    if (email == 'admin') navigate('/admin/tournament')
+    if (email == 'admin') navigate('/addteam')
     else if (email == 'manager') navigate('/manager')
-    navigate('/admin/tournament')
+    navigate('/addteam')
     dispatch(openSignModal(false))
   }
   const handleClickShowPassword = () => setShowPassword(show => !show)
@@ -163,7 +163,8 @@ export default function CustomizedDialogs () {
                 justifyContent={'space-between'}
               >
                 <FormControlLabel control={<Checkbox />} label='Remember me' />
-                <span
+                <Link
+                  to='/forget-password'
                   onClick={() => {
                     setForget(true)
                     console.log('cle')
@@ -171,7 +172,7 @@ export default function CustomizedDialogs () {
                   }}
                 >
                   Forgot password?
-                </span>
+                </Link>
               </Stack>
               <button
                 onClick={handleLogin}

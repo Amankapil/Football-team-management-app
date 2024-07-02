@@ -97,7 +97,7 @@ export default function PersistentDrawerRight () {
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
+      <Box className='buaman' sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position='fixed' open={open}>
           <TopToolbar>
@@ -249,63 +249,71 @@ export default function PersistentDrawerRight () {
       </Box>
 
       {/* This part is Sidebar. */}
-      <Drawer
-        sx={{
-          border: 'none',
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            padding: '3px 20px'
-          },
-          '& .MuiTypography-root,& .MuiListItemIcon-root': {
-            color: '#A2B1BF'
-          }
-        }}
-        variant='persistent'
-        anchor='left'
-        open={open}
-      >
-        <SiteLogo></SiteLogo>
+      <div className='flex'>
+        <Drawer
+          sx={{
+            border: 'none',
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              padding: '3px 20px'
+            },
+            '& .MuiTypography-root,& .MuiListItemIcon-root': {
+              color: '#A2B1BF'
+            }
+          }}
+          variant='persistent'
+          anchor='left'
+          open={open}
+        >
+          <SiteLogo></SiteLogo>
 
-        <Divider />
+          <Divider />
 
-        {!authentification && role == 'common' && (
-          <Search sx={{ borderRadius: 25, width: '100%', m: '30px 0 20px 0' }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder='Search'
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-        )}
+          {!authentification && role == 'common' && (
+            <Search
+              sx={{ borderRadius: 25, width: '100%', m: '30px 0 20px 0' }}
+            >
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder='Search'
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+          )}
 
-        {/* This is profile avatar */}
-        {authentification && role != 'common' && (
-          <List sx={{ textAlign: 'center' }}>
-            <Avatar
-              alt='Remy Sharp'
-              src='/images/avatar/manager.jpg'
-              sx={{ margin: 'auto', width: 90, height: 90, marginBottom: 1 }}
-            />
-            <h5>courtney Henry</h5>
-            <Typography variant='subtitle1' gutterBottom>
-              {authentification && role == 'manager'
-                ? 'Manager'
-                : 'Super Admin'}
-            </Typography>
-          </List>
-        )}
+          {/* This is profile avatar */}
+          {authentification && role != 'common' && (
+            <List sx={{ textAlign: 'center' }}>
+              <Avatar
+                alt='Remy Sharp'
+                src='/images/avatar/manager.jpg'
+                sx={{ margin: 'auto', width: 90, height: 90, marginBottom: 1 }}
+              />
+              <h5>courtney Henry</h5>
+              <Typography variant='subtitle1' gutterBottom>
+                {authentification && role == 'manager'
+                  ? 'Manager'
+                  : 'Super Admin'}
+              </Typography>
+            </List>
+          )}
 
-        {authentification && role != 'common' && <AdminDrawer />}
+          {authentification && role != 'common' && <AdminDrawer />}
+          {/* This is switched other drawer. */}
 
-        {/* This is switched other drawer. */}
-
-        {!authentification && role == 'common' && <UserDrawer />}
-        {!authentification && role == 'manager' && <ManagerDrawer />}
-
-        <Divider />
-      </Drawer>
+          {!authentification && role == 'common' && (
+            <>
+              {/* <div className='fixed left-0 '> */}
+              <UserDrawer />
+              {/* </div> */}
+            </>
+          )}
+          {!authentification && role == 'manager' && <ManagerDrawer />}
+          <Divider />
+        </Drawer>
+      </div>
     </>
   )
 }

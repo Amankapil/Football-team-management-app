@@ -5,6 +5,7 @@ import { Provider, useSelector } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { amber, grey } from '@mui/material/colors'
+import './index.css'
 
 function App () {
   // const mode = useSelector(state=>state.darkMode)

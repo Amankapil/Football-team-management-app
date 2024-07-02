@@ -21,14 +21,19 @@ export default function AdminDrawer () {
   const dispatch = useDispatch()
   const menus = [
     {
+      text: 'Create New Team',
+      icon: <PermIdentityOutlinedIcon />,
+      url: '/addteam'
+    },
+    {
       text: 'Tournament Management',
       icon: <EmojiEventsOutlinedIcon />,
       url: '/admin/tournament'
     },
     {
-      text: 'Team Management',
+      text: 'Team Manager',
       icon: <SportsSoccerOutlinedIcon />,
-      url: '/admin/teammanage'
+      url: '/admin/teammanager'
     },
     { text: 'Player Approval', icon: <DoneAllOutlinedIcon /> },
     { text: 'User Management', icon: <GroupOutlinedIcon /> },
