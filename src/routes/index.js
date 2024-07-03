@@ -18,6 +18,8 @@ import TeamRegistrationForm from '../pages/Addteam/TeamRegistrationForm'
 import ForgotPassword from '../components/CustomModal/ForgotPassword'
 import Createteam from '../pages/CreateTeam/TeamManager'
 import TeamManager from '../pages/AdminPage/TeamManager'
+import NotificationList from '../pages/AdminPage/NotificationList'
+import NotificationManager from '../pages/AdminPage/NotificationManager'
 // import TeamPage from "../pages/UserPage/teams";
 
 // import AuthRoutes from "./AuthRoutes.jsx";
@@ -59,6 +61,16 @@ function MainRoutes () {
                 exact
                 path='/teammanager'
                 element={<TeamManager />}
+              ></Route>
+              <Route
+                exact
+                path='/notification'
+                element={<NotificationList />}
+              ></Route>
+              <Route
+                exact
+                path='/notificationManager'
+                element={<NotificationManager />}
               ></Route>
               <Route
                 exact

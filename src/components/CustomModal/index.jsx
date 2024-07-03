@@ -61,7 +61,7 @@ export default function CustomizedDialogs () {
     dispatch(setAuth({ email }))
     if (email == 'admin') navigate('/addteam')
     else if (email == 'manager') navigate('/manager')
-    navigate('/addteam')
+    // navigate('/addteam')
     dispatch(openSignModal(false))
   }
   const handleClickShowPassword = () => setShowPassword(show => !show)

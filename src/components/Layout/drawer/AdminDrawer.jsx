@@ -16,6 +16,9 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
 import { logout } from '../../../redux/actions/auth'
 import { setBreadCrumbs } from '../../../redux/actions'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+
 export default function AdminDrawer () {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -35,8 +38,17 @@ export default function AdminDrawer () {
       icon: <SportsSoccerOutlinedIcon />,
       url: '/admin/teammanager'
     },
-    { text: 'Player Approval', icon: <DoneAllOutlinedIcon /> },
-    { text: 'User Management', icon: <GroupOutlinedIcon /> },
+    {
+      text: 'Player Approval',
+      icon: <DoneAllOutlinedIcon />,
+      notification: <NotificationsActiveIcon />,
+      url: '/notification'
+    },
+    {
+      text: 'Updates to public',
+      icon: <GroupOutlinedIcon />,
+      url: '/notificationManager'
+    },
     { text: 'My Account', icon: <PermIdentityOutlinedIcon />, url: '/account' }
   ]
   const menuSetting = [
@@ -73,6 +85,7 @@ export default function AdminDrawer () {
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
+              <ListItemText primary={item.notification} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -94,6 +107,7 @@ export default function AdminDrawer () {
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
+              {/* <ListItemText primary={item.notification} /> */}
             </ListItemButton>
           </ListItem>
         ))}

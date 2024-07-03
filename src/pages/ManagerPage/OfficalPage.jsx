@@ -1,12 +1,229 @@
-import React from "react"
-import CustomEditTable from "../../components/CustomEditTable";
-import {columns, EditToolbar, initialRows } from "./datas/officalData"
+import React, { useState } from 'react'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
+import SearchIcon from '@mui/icons-material/Search'
+import { DataGrid, GridToolbarContainer, GridRowModes } from '@mui/x-data-grid'
+import { randomTraderName, randomId } from '@mui/x-data-grid-generator'
+import TextField from '@mui/material/TextField'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
+// import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
 
-function OfficalPage() {
-   
-    return (
-        <CustomEditTable customToolbar={EditToolbar} columns={columns} data={initialRows} />
-    );
+const initialRows = [
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  },
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  },
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  },
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  },
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  },
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  },
+  {
+    id: randomId(),
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach'
+  }
+]
+
+const columns = [
+  {
+    field: 'user',
+    headerName: 'NAME',
+    width: 300,
+    editable: false,
+    renderCell: params => (
+      <div className='d-flex'>
+        <Avatar src={params.row.avatar} sx={{ marginRight: 3 }} />
+        <span>{params.row.name}</span>
+      </div>
+    )
+  },
+  {
+    field: 'pos',
+    headerName: 'POSITION',
+    type: 'text',
+    width: 500,
+    align: 'left',
+    headerAlign: 'left',
+    editable: true
+  }
+]
+
+const EditToolbar = ({ setRows, setRowModesModel }) => {
+  const [searched, setSearched] = useState('')
+
+  const requestSearch = e => {
+    const searchedVal = e.target.value
+    setSearched(searchedVal)
+    const filteredRows = initialRows.filter(row =>
+      row.name.toLowerCase().includes(searchedVal.toLowerCase())
+    )
+    setRows(filteredRows)
+  }
+
+  const cancelSearch = () => {
+    setSearched('')
+    setRows(initialRows)
+  }
+
+  const handleClick = () => {
+    const id = randomId()
+    setRows(oldRows => [
+      ...oldRows,
+      { id, name: '', pos: '', avatar: '', isNew: true }
+    ])
+    setRowModesModel(oldModel => ({
+      ...oldModel,
+      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'pos' }
+    }))
+  }
+
+  return (
+    <GridToolbarContainer
+      sx={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0' }}
+    >
+      <Search sx={{ borderRadius: 25 }}>
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+          placeholder='Search…'
+          inputProps={{ 'aria-label': 'search' }}
+          value={searched}
+          onChange={requestSearch}
+        />
+      </Search>
+      <Button variant='contained' color='primary' onClick={handleClick}>
+        <PersonAddAltOutlinedIcon />
+        &nbsp;&nbsp;Add New Official
+      </Button>
+    </GridToolbarContainer>
+  )
 }
 
-export default OfficalPage;
+const OfficalPage = () => {
+  const [rows, setRows] = useState(initialRows)
+  const [rowModesModel, setRowModesModel] = useState({})
+  const [open, setOpen] = useState(false)
+  const [currentRow, setCurrentRow] = useState({
+    id: '',
+    name: '',
+    pos: '',
+    avatar: ''
+  })
+
+  const handleOpen = row => {
+    setCurrentRow(row)
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    setCurrentRow({ id: '', name: '', pos: '', avatar: '' })
+  }
+
+  const handleSave = () => {
+    setRows(prevRows =>
+      prevRows.map(row => (row.id === currentRow.id ? currentRow : row))
+    )
+    handleClose()
+  }
+
+  const handleEditClick = id => {
+    const row = rows.find(r => r.id === id)
+    handleOpen(row)
+  }
+
+  return (
+    <>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        components={{
+          Toolbar: props => (
+            <EditToolbar
+              {...props}
+              setRows={setRows}
+              setRowModesModel={setRowModesModel}
+            />
+          )
+        }}
+        onCellDoubleClick={params => handleEditClick(params.id)}
+      />
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit Official</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin='dense'
+            label='Name'
+            type='text'
+            fullWidth
+            value={currentRow.name}
+            onChange={e =>
+              setCurrentRow({ ...currentRow, name: e.target.value })
+            }
+          />
+          <TextField
+            margin='dense'
+            label='Position'
+            type='text'
+            fullWidth
+            value={currentRow.pos}
+            onChange={e =>
+              setCurrentRow({ ...currentRow, pos: e.target.value })
+            }
+          />
+          <TextField
+            margin='dense'
+            label='Avatar URL'
+            type='text'
+            fullWidth
+            value={currentRow.avatar}
+            onChange={e =>
+              setCurrentRow({ ...currentRow, avatar: e.target.value })
+            }
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSave}>Save</Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  )
+}
+
+export default OfficalPage

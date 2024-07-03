@@ -299,18 +299,24 @@ export default function PersistentDrawerRight () {
               </Typography>
             </List>
           )}
+          <div className='managerkk'>
+            {authentification && role == 'admin' && <AdminDrawer />}
+          </div>
 
-          {authentification && role != 'common' && <AdminDrawer />}
           {/* This is switched other drawer. */}
 
           {!authentification && role == 'common' && (
             <>
               {/* <div className='fixed left-0 '> */}
               <UserDrawer />
+              {/* <AdminDrawer /> */}
               {/* </div> */}
             </>
           )}
-          {!authentification && role == 'manager' && <ManagerDrawer />}
+
+          <div className='managerkkkkkkkkkkkkkkkkkkk'>
+            {authentification && role == 'manager' && <ManagerDrawer />}
+          </div>
           <Divider />
         </Drawer>
       </div>
