@@ -1,1 +1,1 @@
-export const contentMenu = ["tournament A", "tournament B"];
+export const contentMenu = ['tournament A', 'tournament B']

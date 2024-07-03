@@ -168,60 +168,62 @@ const OfficalPage = () => {
 
   return (
     <>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        components={{
-          Toolbar: props => (
-            <EditToolbar
-              {...props}
-              setRows={setRows}
-              setRowModesModel={setRowModesModel}
+      <div className='max-w-7xl mx-auto mt-40'>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          components={{
+            Toolbar: props => (
+              <EditToolbar
+                {...props}
+                setRows={setRows}
+                setRowModesModel={setRowModesModel}
+              />
+            )
+          }}
+          onCellDoubleClick={params => handleEditClick(params.id)}
+        />
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Edit Official</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin='dense'
+              label='Name'
+              type='text'
+              fullWidth
+              value={currentRow.name}
+              onChange={e =>
+                setCurrentRow({ ...currentRow, name: e.target.value })
+              }
             />
-          )
-        }}
-        onCellDoubleClick={params => handleEditClick(params.id)}
-      />
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Official</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin='dense'
-            label='Name'
-            type='text'
-            fullWidth
-            value={currentRow.name}
-            onChange={e =>
-              setCurrentRow({ ...currentRow, name: e.target.value })
-            }
-          />
-          <TextField
-            margin='dense'
-            label='Position'
-            type='text'
-            fullWidth
-            value={currentRow.pos}
-            onChange={e =>
-              setCurrentRow({ ...currentRow, pos: e.target.value })
-            }
-          />
-          <TextField
-            margin='dense'
-            label='Avatar URL'
-            type='text'
-            fullWidth
-            value={currentRow.avatar}
-            onChange={e =>
-              setCurrentRow({ ...currentRow, avatar: e.target.value })
-            }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSave}>Save</Button>
-        </DialogActions>
-      </Dialog>
+            <TextField
+              margin='dense'
+              label='Position'
+              type='text'
+              fullWidth
+              value={currentRow.pos}
+              onChange={e =>
+                setCurrentRow({ ...currentRow, pos: e.target.value })
+              }
+            />
+            <TextField
+              margin='dense'
+              label='Avatar URL'
+              type='text'
+              fullWidth
+              value={currentRow.avatar}
+              onChange={e =>
+                setCurrentRow({ ...currentRow, avatar: e.target.value })
+              }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleSave}>Save</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </>
   )
 }

@@ -60,7 +60,7 @@ export default function CustomizedDialogs () {
     }
     dispatch(setAuth({ email }))
     if (email == 'admin') navigate('/addteam')
-    else if (email == 'manager') navigate('/manager')
+    else if (email == 'manager') navigate('/squad')
     // navigate('/addteam')
     dispatch(openSignModal(false))
   }

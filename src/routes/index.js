@@ -20,6 +20,11 @@ import Createteam from '../pages/CreateTeam/TeamManager'
 import TeamManager from '../pages/AdminPage/TeamManager'
 import NotificationList from '../pages/AdminPage/NotificationList'
 import NotificationManager from '../pages/AdminPage/NotificationManager'
+import SquadPage from '../pages/ManagerPage/SquadPage'
+import OfficalPage from '../pages/ManagerPage/OfficalPage'
+import JerseyPage from '../pages/ManagerPage/JerseyPage'
+import MatchPage from '../pages/ManagerPage/MatchPage'
+import TransferPage from '../pages/ManagerPage/TransferPage'
 // import TeamPage from "../pages/UserPage/teams";
 
 // import AuthRoutes from "./AuthRoutes.jsx";
@@ -57,6 +62,24 @@ function MainRoutes () {
             <Routes>
               <Route exact path='/' element={<UserPage></UserPage>}></Route>
               <Route exact path='/addteam' element={<Createteam />}></Route>
+              <Route exact path='/squad' element={<SquadPage />}></Route>
+              <Route
+                exact
+                path='/offical-team'
+                element={<OfficalPage />}
+              ></Route>
+              <Route exact path='/jersey' element={<JerseyPage />}></Route>
+              <Route exact path='/matchs' element={<MatchPage />}></Route>
+              <Route
+                exact
+                path='/transfer-request'
+                element={<TransferPage />}
+              ></Route>
+              <Route
+                exact
+                path='/team-manager-request'
+                element={<NotificationManager />}
+              ></Route>
               <Route
                 exact
                 path='/teammanager'
