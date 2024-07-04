@@ -108,6 +108,15 @@ export default function CustomEditTable ({
     }
   }
 
+  // New number column
+  // const numberColumn = {
+  //   field: 'number',
+  //   headerName: 'Number',
+  //   width: 150,
+  //   editable: true,
+  //   type: 'number'
+  // }
+
   return (
     <Box
       sx={{

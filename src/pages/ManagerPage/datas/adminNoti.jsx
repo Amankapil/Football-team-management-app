@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Avatar from '@mui/material/Avatar'
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
+import { requestPlayer } from '../../../redux/actions'
 import { randomTraderName, randomId } from '@mui/x-data-grid-generator'
-
-import { GridRowModes, GridToolbarContainer } from '@mui/x-data-grid'
+import { GridToolbarContainer } from '@mui/x-data-grid'
 import {
   Button,
   Dialog,
@@ -15,145 +16,101 @@ import {
   TextField
 } from '@mui/material'
 
-export const initialRows = [
+export const initialRowss = [
   {
     id: 0,
-    name: randomTraderName(),
+    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+
     avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
+    description: 'Defender',
+    TournamentName: 'tournamentA',
+    type: 'Good Performance',
     date: '01/01/2024',
-    status: 'pending'
+
+    jersey: 22
   },
   {
     id: 1,
-    name: randomTraderName(),
+    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+
     avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
+    description: 'Midfielder',
+    TournamentName: randomTraderName(),
+    type: 'Injury',
     date: '01/01/2024',
-    status: 'pending'
+
+    jersey: 22
   },
   {
     id: 2,
-    name: randomTraderName(),
+    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
     avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
+    description: 'Midfielder',
+    TournamentName: randomTraderName(),
+    type: 'Injury',
     date: '01/01/2024',
-    status: 'pending'
+
+    jersey: 22
   }
 ]
 
-export const columns = [
+export const columnss = [
   {
     field: 'id',
     headerName: 'No.',
-    type: 'text',
     width: 50,
     align: 'left',
-    headerAlign: 'left'
-  },
-  {
-    field: 'user',
-    headerName: 'Name',
-    width: 300,
-    editable: false,
-    renderCell: params => {
-      return (
-        <div className='d-flex'>
-          <Avatar src={params.row.avatar} sx={{ marginRight: 3 }} />
-          <span>{params.row.name}</span>
-        </div>
-      )
-    }
-  },
-  {
-    field: 'pos',
-    headerName: 'Position',
-    type: 'text',
-    width: 100,
-    align: 'left',
     headerAlign: 'left',
+    type: 'singleSelect'
+  },
+  {
+    field: 'name',
+    headerName: 'NotificationList',
+    width: 580,
+    editable: true
+  },
+  {
+    field: 'description',
+    headerName: 'Description',
+    width: 100,
+    editable: true
+  },
+  {
+    field: 'type',
+    headerName: 'Type',
+    width: 100,
     editable: true
   },
   {
     field: 'date',
-    headerName: 'JoinDate',
-    type: 'text',
+    headerName: 'Date',
     width: 100,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
-  },
-  {
-    field: 'Email',
-    headerName: 'Email',
-    type: 'text',
-    width: 100,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
-  },
-  {
-    field: 'Contact',
-    headerName: 'Contact',
-    type: 'text',
-    width: 100,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
-  },
-  {
-    field: 'status',
-    headerName: 'Status',
-    type: 'text',
-    width: 100,
-    align: 'left',
-    headerAlign: 'left',
     editable: true
   }
 ]
 
 export const contentMenu = [
-  { text: 'All Squad' },
-  { text: 'Tournament A' },
-  { text: 'Tournament B' }
+  { text: 'Team updates' },
+  { text: 'Admin updates' }
+  //   { text: 'Tournament B' }
 ]
 
-export function EditToolbar (props) {
+export function EditToolbarr (props) {
   const { setRows, setRowModesModel } = props
   const [searched, setSearched] = React.useState('')
+  const dispatch = useDispatch()
+  const handleRequstPlayer = () => {
+    dispatch(requestPlayer())
+  }
 
   const requestSearch = e => {
     const searchedVal = e.target.value
-    const filteredRows = initialRows.filter(row => {
+    const filteredRows = initialRowss.filter(row => {
       setSearched(searchedVal)
       return row.name.toLowerCase().includes(searchedVal.toLowerCase())
     })
     setRows(oldRows => [...filteredRows])
   }
-
-  const cancelSearch = () => {
-    setSearched('')
-    requestSearch('')
-  }
-
-  const handleClick = () => {
-    const id = randomId()
-    setRows(oldRows => [...oldRows, { id, user: '', pos: '', isNew: true }])
-    setRowModesModel(oldModel => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'pos' }
-    }))
-  }
-
   const [open, setOpen] = useState(false)
 
   const handleSave = () => {
@@ -185,25 +142,20 @@ export function EditToolbar (props) {
           inputProps={{ 'aria-label': 'search' }}
           value={searched}
           onChange={requestSearch}
-          onCancelSearch={() => cancelSearch()}
         />
       </Search>
-      <button className='pull-btn' color='primary' onClick={handleOpen}>
+      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;Add New Offical
-      </button>
+        &nbsp;&nbsp;Add Update
+      </button> */}
 
-      <Dialog
-        className='!bg-[#001835d4]  play'
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Official</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin='dense'
-            label='Name'
+            label='Title'
             type='text'
             fullWidth
             // value={initialRows.name}
@@ -213,7 +165,7 @@ export function EditToolbar (props) {
           />
           <TextField
             margin='dense'
-            label='Position'
+            label='description'
             type='text'
             fullWidth
             // value={initialRows.pos}
@@ -221,10 +173,9 @@ export function EditToolbar (props) {
             //   setinitialRows({ ...initialRows, pos: e.target.value })
             // }
           />
-
           <TextField
             margin='dense'
-            label='Jersey Number'
+            label='type'
             type='text'
             fullWidth
             // value={initialRows.avatar}
@@ -234,7 +185,7 @@ export function EditToolbar (props) {
           />
           <TextField
             margin='dense'
-            label='Join date'
+            //             label='date'
             type='date'
             fullWidth
             // value={initialRows.avatar}
@@ -244,28 +195,7 @@ export function EditToolbar (props) {
           />
           <TextField
             margin='dense'
-            label='Email'
-            type='email'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Contact Number'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-
-          <TextField
-            margin='dense'
-            label='status'
+            label='Publish by'
             type='text'
             fullWidth
             // value={initialRows.avatar}

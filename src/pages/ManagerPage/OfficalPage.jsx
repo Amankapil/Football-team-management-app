@@ -10,128 +10,139 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import CustomEditTable from '../../components/CustomEditTable'
+import { Search } from '@mui/icons-material'
+
+import CustomTab from '../../components/CustomTabs'
+
+import {
+  contentMenu,
+  columns,
+  EditToolbar,
+  initialRows
+} from './datas/officalData'
 // import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
 
-const initialRows = [
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach'
-  }
-]
+// const initialRows = [
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   },
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   },
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   },
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   },
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   },
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   },
+//   {
+//     id: randomId(),
+//     name: randomTraderName(),
+//     avatar: '/images/avatar/player.jpg',
+//     pos: 'Coach'
+//   }
+// ]
 
-const columns = [
-  {
-    field: 'user',
-    headerName: 'NAME',
-    width: 300,
-    editable: false,
-    renderCell: params => (
-      <div className='d-flex'>
-        <Avatar src={params.row.avatar} sx={{ marginRight: 3 }} />
-        <span>{params.row.name}</span>
-      </div>
-    )
-  },
-  {
-    field: 'pos',
-    headerName: 'POSITION',
-    type: 'text',
-    width: 500,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
-  }
-]
+// const columns = [
+//   {
+//     field: 'user',
+//     headerName: 'Name',
+//     width: 300,
+//     editable: false,
+//     renderCell: params => (
+//       <div className='d-flex'>
+//         <Avatar src={params.row.avatar} sx={{ marginRight: 3 }} />
+//         <span>{params.row.name}</span>
+//       </div>
+//     )
+//   },
+//   {
+//     field: 'pos',
+//     headerName: 'Position',
+//     type: 'text',
+//     width: 400,
+//     align: 'left',
+//     headerAlign: 'left',
+//     editable: true
+//   }
+// ]
 
-const EditToolbar = ({ setRows, setRowModesModel }) => {
-  const [searched, setSearched] = useState('')
+// const EditToolbar = ({ setRows, setRowModesModel }) => {
+//   const [search, setSearched] = useState('')
 
-  const requestSearch = e => {
-    const searchedVal = e.target.value
-    setSearched(searchedVal)
-    const filteredRows = initialRows.filter(row =>
-      row.name.toLowerCase().includes(searchedVal.toLowerCase())
-    )
-    setRows(filteredRows)
-  }
+//   const requestSearch = e => {
+//     const searchedVal = e.target.value
+//     setSearched(searchedVal)
+//     const filteredRows = initialRows.filter(row =>
+//       row.name.toLowerCase().includes(searchedVal.toLowerCase())
+//     )
+//     setRows(filteredRows)
+//   }
 
-  const cancelSearch = () => {
-    setSearched('')
-    setRows(initialRows)
-  }
+//   const cancelSearch = () => {
+//     setSearched('')
+//     setRows(initialRows)
+//   }
 
-  const handleClick = () => {
-    const id = randomId()
-    setRows(oldRows => [
-      ...oldRows,
-      { id, name: '', pos: '', avatar: '', isNew: true }
-    ])
-    setRowModesModel(oldModel => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'pos' }
-    }))
-  }
+//   const handleClick = () => {
+//     const id = randomId()
+//     setRows(oldRows => [
+//       ...oldRows,
+//       { id, name: '', pos: '', avatar: '', isNew: true }
+//     ])
+//     setRowModesModel(oldModel => ({
+//       ...oldModel,
+//       [id]: { mode: GridRowModes.Edit, fieldToFocus: 'pos' }
+//     }))
+//   }
 
-  return (
-    <GridToolbarContainer
-      sx={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0' }}
-    >
-      <Search sx={{ borderRadius: 25 }}>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder='Search…'
-          inputProps={{ 'aria-label': 'search' }}
-          value={searched}
-          onChange={requestSearch}
-        />
-      </Search>
-      <Button variant='contained' color='primary' onClick={handleClick}>
-        <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;Add New Official
-      </Button>
-    </GridToolbarContainer>
-  )
-}
+//   // return (
+//   //   <GridToolbarContainer
+//   //     sx={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0' }}
+//   //   >
+//   //     <Search sx={{ borderRadius: 25 }}>
+//   //       <SearchIconWrapper>
+//   //         <SearchIcon />
+//   //       </SearchIconWrapper>
+//   //       <StyledInputBase
+//   //         placeholder='Search…'
+//   //         inputProps={{ 'aria-label': 'search' }}
+//   //         value={search}
+//   //         onChange={requestSearch}
+//   //       />
+//   //     </Search>
+//   //     <Button variant='contained' color='primary' onClick={handleClick}>
+//   //       <PersonAddAltOutlinedIcon />
+//   //       &nbsp;&nbsp;Add New Official
+//   //     </Button>
+//   //   </GridToolbarContainer>
+//   // )
+// }
 
 const OfficalPage = () => {
   const [rows, setRows] = useState(initialRows)
@@ -169,7 +180,7 @@ const OfficalPage = () => {
   return (
     <>
       <div className='max-w-7xl mx-auto mt-40'>
-        <DataGrid
+        {/* <DataGrid
           rows={rows}
           columns={columns}
           components={{
@@ -222,7 +233,16 @@ const OfficalPage = () => {
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={handleSave}>Save</Button>
           </DialogActions>
-        </Dialog>
+        </Dialog> */}
+
+        <div className='max-w-7xl mx-auto mt-40'>
+          {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
+          <CustomEditTable
+            customToolbar={EditToolbar}
+            columns={columns}
+            data={initialRows}
+          />
+        </div>
       </div>
     </>
   )

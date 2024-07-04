@@ -1,3 +1,9 @@
+// import React from 'react'
+// import CustomSelect from '../../components/CustomSelect'
+// import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined'
+// import Stack from '@mui/material/Stack'
+// import { contentMenu } from './datas/matchData'
+
 import React from 'react'
 import CustomTab from '../../components/CustomTabs'
 import CustomEditTable from '../../components/CustomEditTable'
@@ -6,9 +12,10 @@ import {
   columns,
   EditToolbar,
   initialRows
-} from './datas/squadData'
+} from './datas/TourData'
 
-function SquadPage () {
+function Tournaments () {
+  const menuItems = [1, 2, 3, 4]
   return (
     <>
       <div className='max-w-7xl mx-auto mt-40'>
@@ -23,4 +30,4 @@ function SquadPage () {
   )
 }
 
-export default SquadPage
+export default Tournaments

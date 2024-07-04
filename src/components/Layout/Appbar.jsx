@@ -137,9 +137,7 @@ export default function PersistentDrawerRight () {
               //   tabData={topMenu}
               //   index={menuIndex}
               // />
-              <>
-                <h1>Hey admin</h1>
-              </>
+              <>{/* <h1>Hey admin</h1> */}</>
             )}
             <Box sx={{ flex: 1 }} />
             <Box
@@ -167,7 +165,7 @@ export default function PersistentDrawerRight () {
                   <LoginIcon sx={{ ml: 1 }} />
                 </Fab>
               )}
-              {authentification && role !== 'common' && (
+              {/* {authentification && role !== 'common' && (
                 <Avatar
                   size='large'
                   edge='end'
@@ -178,7 +176,7 @@ export default function PersistentDrawerRight () {
                   color='inherit'
                   src='/images/avatar/manager.jpg'
                 ></Avatar>
-              )}
+              )} */}
               <Fab
                 size='small'
                 aria-label='setting'
@@ -269,7 +267,7 @@ export default function PersistentDrawerRight () {
 
           <Divider />
 
-          {!authentification && role == 'common' && (
+          {/* {!authentification && role == 'common' && (
             <Search
               sx={{ borderRadius: 25, width: '100%', m: '30px 0 20px 0' }}
             >
@@ -281,7 +279,7 @@ export default function PersistentDrawerRight () {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
-          )}
+          )} */}
 
           {/* This is profile avatar */}
           {authentification && role != 'common' && (
@@ -310,6 +308,7 @@ export default function PersistentDrawerRight () {
               {/* <div className='fixed left-0 '> */}
               <UserDrawer />
               {/* <AdminDrawer /> */}
+              {/* <ManagerDrawer /> */}
               {/* </div> */}
             </>
           )}

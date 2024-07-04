@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Avatar from '@mui/material/Avatar'
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
@@ -7,74 +7,54 @@ import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
 import { requestPlayer } from '../../../redux/actions'
 import { randomTraderName, randomId } from '@mui/x-data-grid-generator'
 import { GridToolbarContainer } from '@mui/x-data-grid'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField
+} from '@mui/material'
 
 export const initialRows = [
   {
-    id: randomId(),
+    id: 0,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    position: 'Defender',
-    tournamentName: 'tournamentA',
-    status: 'Good Performance',
+    Position: 'Defender',
+    TournamentName: 'tournamentA',
+    Status: 'Good Performance',
     jersey: 22
   },
   {
-    id: randomId(),
+    id: 1,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    position: 'Midfielder',
-    tournamentName: randomTraderName(),
-    status: 'Injury',
+    Position: 'Midfielder',
+    TournamentName: randomTraderName(),
+    Status: 'Injury',
     jersey: 22
   },
   {
-    id: randomId(),
+    id: 2,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    position: 'Midfielder',
-    tournamentName: randomTraderName(),
-    status: 'Injury',
-    jersey: 22
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    position: 'Midfielder',
-    tournamentName: randomTraderName(),
-    status: 'Injury',
-    jersey: 22
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    position: 'Midfielder',
-    tournamentName: randomTraderName(),
-    status: 'Injury',
-    jersey: 22
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    position: 'Midfielder',
-    tournamentName: randomTraderName(),
-    status: 'Injury',
-    jersey: 22
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    position: 'Midfielder',
-    tournamentName: randomTraderName(),
-    status: 'Injury',
+    Position: 'Midfielder',
+    TournamentName: randomTraderName(),
+    Status: 'Injury',
     jersey: 22
   }
 ]
 
 export const columns = [
+  {
+    field: 'id',
+    headerName: 'No.',
+    width: 50,
+    align: 'left',
+    headerAlign: 'left',
+    type: 'singleSelect'
+  },
   {
     field: 'user',
     headerName: 'Name',
@@ -90,8 +70,8 @@ export const columns = [
     }
   },
   {
-    field: 'position',
-    headerName: 'POSITION',
+    field: 'Position',
+    headerName: 'Position',
     width: 150,
     align: 'left',
     headerAlign: 'left',
@@ -103,8 +83,8 @@ export const columns = [
     }
   },
   {
-    field: 'tournamentName',
-    headerName: 'tournamentName',
+    field: 'TournamentName',
+    headerName: 'TournamentName',
     width: 120,
     align: 'left',
     headerAlign: 'left',
@@ -115,8 +95,8 @@ export const columns = [
     // }
   },
   {
-    field: 'status',
-    headerName: 'STATUS',
+    field: 'Status',
+    headerName: 'Status',
     width: 150,
     align: 'left',
     headerAlign: 'left',
@@ -132,7 +112,7 @@ export const columns = [
   },
   {
     field: 'jersey',
-    headerName: 'JERSEY NUMBER',
+    headerName: 'Jersey Number',
     type: 'number',
     align: 'left',
     headerAlign: 'left',
@@ -163,6 +143,23 @@ export function EditToolbar (props) {
     })
     setRows(oldRows => [...filteredRows])
   }
+  const [open, setOpen] = useState(false)
+
+  const handleSave = () => {
+    setRows(prevRows =>
+      prevRows.map(row => (row.id === currentRow.id ? currentRow : row))
+    )
+    handleClose()
+  }
+  const handleOpen = row => {
+    // setCurrentRow(row)
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    // setCurrentRow({ id: '', name: '', pos: '', avatar: '' })
+  }
 
   return (
     <GridToolbarContainer
@@ -179,10 +176,61 @@ export function EditToolbar (props) {
           onChange={requestSearch}
         />
       </Search>
-      <button className='pull-btn' color='primary' onClick={handleRequstPlayer}>
+      <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
         &nbsp;&nbsp;add player into squad
       </button>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit Official</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin='dense'
+            label='Name'
+            type='text'
+            fullWidth
+            // value={initialRows.name}
+            // onChange={e =>
+            //   setinitialRows({ ...initialRows, name: e.target.value })
+            // }
+          />
+          <TextField
+            margin='dense'
+            label='Position'
+            type='text'
+            fullWidth
+            // value={initialRows.pos}
+            // onChange={e =>
+            //   setinitialRows({ ...initialRows, pos: e.target.value })
+            // }
+          />
+          <TextField
+            margin='dense'
+            label='status'
+            type='text'
+            fullWidth
+            // value={initialRows.avatar}
+            // onChange={e =>
+            //   setinitialRows({ ...initialRows, avatar: e.target.value })
+            // }
+          />
+          <TextField
+            margin='dense'
+            label='Jersey Number'
+            type='text'
+            fullWidth
+            // value={initialRows.avatar}
+            // onChange={e =>
+            //   setinitialRows({ ...initialRows, avatar: e.target.value })
+            // }
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Save</Button>
+        </DialogActions>
+      </Dialog>
     </GridToolbarContainer>
   )
 }

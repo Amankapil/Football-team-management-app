@@ -16,22 +16,23 @@ import { logout } from '../../../redux/actions/auth'
 export default function ManagerDrawer () {
   const [open, setOpen] = React.useState(true)
   const menus = [
-    { text: 'My Team', icon: <GroupOutlinedIcon />, url: '/squad' },
     { text: 'squad', icon: <PersonOutlinedIcon />, url: '/squad' },
+    { text: 'Tournaments', icon: <GroupOutlinedIcon />, url: '/tournaments' },
     {
-      text: 'offical team',
+      text: 'Manage Team Players',
       icon: <PersonOutlinedIcon />,
       url: '/offical-team'
     },
     { text: 'jersey', icon: <PersonOutlinedIcon />, url: '/jersey' },
     { text: 'match', icon: <PersonOutlinedIcon />, url: '/matchs' },
     {
-      text: 'transfers',
+      text: 'Player Transfer',
+
       icon: <PersonOutlinedIcon />,
       url: '/transfer-request'
     },
     {
-      text: 'team update',
+      text: 'Official updates',
       icon: <PersonOutlinedIcon />,
       url: '/team-manager-request'
     },

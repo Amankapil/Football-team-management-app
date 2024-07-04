@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Avatar from '@mui/material/Avatar'
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
+import { requestPlayer } from '../../../redux/actions'
 import { randomTraderName, randomId } from '@mui/x-data-grid-generator'
-
-import { GridRowModes, GridToolbarContainer } from '@mui/x-data-grid'
+import { GridToolbarContainer } from '@mui/x-data-grid'
 import {
   Button,
   Dialog,
@@ -20,34 +21,43 @@ export const initialRows = [
     id: 0,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
-    date: '01/01/2024',
-    status: 'pending'
+    Position: 'Defender',
+    startdate: '01/01/2024',
+    enddate: '01/01/2024',
+    status: 'Live',
+    TournamentName: randomTraderName(),
+    teams: ['Team 1', 'Team 2'],
+    teamA: 'a',
+    teamB: 'a',
+    place: 'surat'
   },
   {
     id: 1,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
-    date: '01/01/2024',
-    status: 'pending'
+    Position: 'Midfielder',
+    TournamentName: randomTraderName(),
+    startdate: '01/01/2024',
+    enddate: '01/01/2024',
+    status: 'Live',
+    teamA: 'a',
+    teams: ['Team 1', 'Team 2'],
+    teamB: 'a',
+    place: 'surat'
   },
   {
     id: 2,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
-    date: '01/01/2024',
-    status: 'pending'
+    Position: 'Midfielder',
+    TournamentName: randomTraderName(),
+    startdate: '01/01/2024',
+    enddate: '01/01/2024',
+    status: 'Upcoming',
+    teams: ['Team 1', 'Team 2'],
+    teamA: 'a',
+    teamB: 'a',
+    place: 'surat'
   }
 ]
 
@@ -55,81 +65,87 @@ export const columns = [
   {
     field: 'id',
     headerName: 'No.',
-    type: 'text',
     width: 50,
     align: 'left',
-    headerAlign: 'left'
-  },
-  {
-    field: 'user',
-    headerName: 'Name',
-    width: 300,
-    editable: false,
-    renderCell: params => {
-      return (
-        <div className='d-flex'>
-          <Avatar src={params.row.avatar} sx={{ marginRight: 3 }} />
-          <span>{params.row.name}</span>
-        </div>
-      )
-    }
-  },
-  {
-    field: 'pos',
-    headerName: 'Position',
-    type: 'text',
-    width: 100,
-    align: 'left',
     headerAlign: 'left',
-    editable: true
+    type: 'singleSelect'
   },
   {
-    field: 'date',
-    headerName: 'JoinDate',
-    type: 'text',
-    width: 100,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
+    field: 'TournamentName',
+    headerName: 'TournamentName',
+    width: 150,
+    editable: false
   },
   {
-    field: 'Email',
-    headerName: 'Email',
-    type: 'text',
-    width: 100,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
+    field: 'startdate',
+    headerName: 'StartDate',
+    width: 150,
+    editable: false
   },
   {
-    field: 'Contact',
-    headerName: 'Contact',
-    type: 'text',
-    width: 100,
-    align: 'left',
-    headerAlign: 'left',
-    editable: true
+    field: 'enddate',
+    headerName: 'Enddate',
+    width: 150,
+    editable: false
   },
+
+  {
+    field: 'teams',
+    headerName: 'Teams',
+    width: 150,
+    editable: false
+    //     renderCell: params => {
+    //       //       const value = params.value
+    //       {
+    //         team.players.map((player, index) => <li key={index}>{player}</li>)
+    //       }
+    //     }
+  },
+  //   {
+  //     field: 'Position',
+  //     headerName: 'Position',
+  //     width: 150,
+  //     align: 'left',
+  //     headerAlign: 'left',
+  //     type: 'singleSelect',
+  //     valueOptions: ['Goal Keeper', 'Defender', 'Midfielder'],
+  //     editable: true,
+  //     valueFormatter: (value, row, func) => {
+  //       return func.valueOptions[value]
+  //     }
+  //   },
+
   {
     field: 'status',
     headerName: 'Status',
-    type: 'text',
-    width: 100,
+    width: 150,
     align: 'left',
     headerAlign: 'left',
-    editable: true
+    editable: true,
+    type: 'singleSelect',
+    valueOptions: ['Upcoming', 'Live'],
+    renderCell: params => {
+      const value = params.value
+      if (value === 'Live') return <font color='green'>{value}</font>
+      else if (value === 'Upcoming') return <font color='orange'>{value}</font>
+      else return <font color='red'>{value}</font>
+    }
   }
 ]
 
 export const contentMenu = [
-  { text: 'All Squad' },
-  { text: 'Tournament A' },
-  { text: 'Tournament B' }
+  { text: 'All tournaments' },
+  { text: 'Participated Tournaments' },
+  { text: 'Live tournaments' }
 ]
 
 export function EditToolbar (props) {
   const { setRows, setRowModesModel } = props
   const [searched, setSearched] = React.useState('')
+  const dispatch = useDispatch()
+  const handleRequstPlayer = () => {
+    dispatch(requestPlayer())
+  }
 
   const requestSearch = e => {
     const searchedVal = e.target.value
@@ -139,21 +155,6 @@ export function EditToolbar (props) {
     })
     setRows(oldRows => [...filteredRows])
   }
-
-  const cancelSearch = () => {
-    setSearched('')
-    requestSearch('')
-  }
-
-  const handleClick = () => {
-    const id = randomId()
-    setRows(oldRows => [...oldRows, { id, user: '', pos: '', isNew: true }])
-    setRowModesModel(oldModel => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'pos' }
-    }))
-  }
-
   const [open, setOpen] = useState(false)
 
   const handleSave = () => {
@@ -185,19 +186,14 @@ export function EditToolbar (props) {
           inputProps={{ 'aria-label': 'search' }}
           value={searched}
           onChange={requestSearch}
-          onCancelSearch={() => cancelSearch()}
         />
       </Search>
-      <button className='pull-btn' color='primary' onClick={handleOpen}>
+      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;Add New Offical
-      </button>
+        &nbsp;&nbsp;add player into squad
+      </button> */}
 
-      <Dialog
-        className='!bg-[#001835d4]  play'
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Official</DialogTitle>
         <DialogContent>
           <TextField
@@ -221,51 +217,19 @@ export function EditToolbar (props) {
             //   setinitialRows({ ...initialRows, pos: e.target.value })
             // }
           />
-
-          <TextField
-            margin='dense'
-            label='Jersey Number'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Join date'
-            type='date'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Email'
-            type='email'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Contact Number'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-
           <TextField
             margin='dense'
             label='status'
+            type='text'
+            fullWidth
+            // value={initialRows.avatar}
+            // onChange={e =>
+            //   setinitialRows({ ...initialRows, avatar: e.target.value })
+            // }
+          />
+          <TextField
+            margin='dense'
+            label='Jersey Number'
             type='text'
             fullWidth
             // value={initialRows.avatar}

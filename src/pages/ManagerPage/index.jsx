@@ -22,8 +22,8 @@ function ManagerPage () {
     'offical team',
     'jersey',
     'match',
-    'transfers',
-    'team update'
+    'Player Transfer',
+    'Official updates'
   ]
   const [select, setSelect] = React.useState(0)
   const open = useSelector(state => state.drawer.open)
