@@ -31,7 +31,7 @@ function NotificationManager () {
   )
   //   const open = useSelector(state => state.drawer.open)
   //   const teamInfo = useSelector(state => state.sidebar)
-  const menuLists = ['Manager update', 'Admin update']
+  const menuLists = ['Admin update']
 
   React.useEffect(() => {
     handleMenu(select)
@@ -102,7 +102,7 @@ function NotificationManager () {
               // onChange={handleChange}
               aria-label='basic tabs example'
             >
-              {menuLists.map((item, index) => (
+              {/* {menuLists.map((item, index) => (
                 <Tab
                   key={index}
                   // icon={item}
@@ -113,12 +113,12 @@ function NotificationManager () {
                   label={item}
                   onClick={() => handleMenu(index, item)}
                 ></Tab>
-              ))}
+              ))} */}
             </Tabs>
           </Box>
         </Box>
 
-        <div className='main-body'>{renderPage}</div>
+        <div className='main-bdy'>{renderPage}</div>
       </div>
     </>
   )

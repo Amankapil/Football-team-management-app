@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import clsx from 'clsx'
-import { randomId, randomArrayItem } from '@mui/x-data-grid-generator'
 import { useDispatch } from 'react-redux'
-// import { GridToolbarContainer } from '@mui/x-data-grid'
+import Avatar from '@mui/material/Avatar'
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
+import SearchIcon from '@mui/icons-material/Search'
+import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
+import { requestPlayer } from '../../../redux/actions'
+import { randomTraderName, randomId } from '@mui/x-data-grid-generator'
+import { GridToolbarContainer } from '@mui/x-data-grid'
 import {
   Button,
   Dialog,
@@ -11,129 +15,94 @@ import {
   DialogTitle,
   TextField
 } from '@mui/material'
-import Avatar from '@mui/material/Avatar'
-import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
-import SearchIcon from '@mui/icons-material/Search'
-import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
-import { requestPlayer } from '../../../redux/actions'
-// import { randomTraderName, randomId } from '@mui/x-data-grid-generator'
-import { GridToolbarContainer } from '@mui/x-data-grid'
 
-const roles = ['Active', 'Request Approval']
-const randomRole = () => {
-  return randomArrayItem(roles)
-}
-export const initialRows = [
+export const initialRowss = [
   {
     id: 1,
-    name: 'Champions Cup',
-    teams: 'Team Alpha, Team Beta',
-    status: 'Active',
-    startDate: '2024-07-01',
-    endDate: '2024-07-15',
-    logo: 'https://via.placeholder.com/50',
-    sponsor: 'Sponsor A'
+    name: randomTraderName(),
+
+    avatar: '/images/avatar/player.jpg',
+    description: 'Defender',
+    TournamentName: 'tournamentA',
+    type: 'Good Performance',
+    date: '01/01/2024',
+    status: 'approve',
+
+    jersey: 22
   },
   {
     id: 2,
-    name: 'Summer Slam',
-    teams: 'Team Gamma, Team Delta',
-    status: 'Active',
-    startDate: '2024-08-01',
-    endDate: '2024-08-15',
-    logo: 'https://via.placeholder.com/50',
-    sponsor: 'Sponsor B'
+    name: randomTraderName(),
+
+    avatar: '/images/avatar/player.jpg',
+    description: 'Midfielder',
+    TournamentName: randomTraderName(),
+    type: 'Injury',
+    date: '01/01/2024',
+    status: 'approve',
+
+    jersey: 22
   },
   {
     id: 3,
-    name: 'Winter Classic',
-    teams: 'Team Epsilon, Team Zeta',
-    status: 'Scheduled',
-    startDate: '2024-09-01',
-    endDate: '2024-09-15',
-    logo: 'https://via.placeholder.com/50',
-    sponsor: 'Sponsor C'
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    description: 'Midfielder',
+    TournamentName: randomTraderName(),
+    type: 'Injury',
+    date: '01/01/2024',
+
+    status: 'decline',
+
+    jersey: 22
   }
 ]
-export const columns = [
+
+export const columnss = [
   {
     field: 'id',
-    headerName: 'No',
-    type: 'text',
+    headerName: 'No.',
     width: 50,
     align: 'left',
     headerAlign: 'left',
-    editable: true
+    type: 'singleSelect'
   },
   {
-    field: 'team',
-    headerName: 'Tournament',
-    width: 220,
-    editable: false,
-    renderCell: params => {
-      return (
-        <div className='d-flex'>
-          <Avatar
-            src={params.row.logo}
-            sx={{ margin: '10px 10px', width: '30px', height: '30px' }}
-          />
-          <span>{params.row.name}</span>
-        </div>
-      )
-    }
-  },
-  {
-    field: 'teams',
-    headerName: 'teams',
-    type: 'text',
+    field: 'name',
+    headerName: 'Player name',
     width: 180,
-    align: 'left',
-    headerAlign: 'left',
     editable: true
   },
   {
     field: 'status',
-    headerName: 'Status',
-    width: 150,
+    headerName: 'Accept/Reject',
+    width: 180,
+    editable: true,
     editable: true,
     type: 'singleSelect',
-    valueOptions: ['Active', 'Request Approval'],
+    valueOptions: ['approve', 'decline'],
     renderCell: params => {
-      return (
-        <span
-          className={
-            params.row.status == 'Active' ? 'text-green' : 'text-warning'
-          }
-        >
-          {params.row.status}
-        </span>
-      )
+      const value = params.value
+      if (value === 'approve') return <font color='green'>{value}</font>
+      else return <font color='red'>{value}</font>
     }
   },
+
   {
-    field: 'startDate',
-    headerName: 'StartDate',
-    type: 'text',
-    width: 100,
-    editable: true
-  },
-  {
-    field: 'endDate',
-    headerName: 'EndDate',
-    type: 'text',
-    width: 100,
-    editable: true
-  },
-  {
-    field: 'sponsor',
-    headerName: 'Sponsor',
-    type: 'text',
+    field: 'date',
+    headerName: 'Date',
     width: 100,
     editable: true
   }
 ]
 
-export function EditToolbar (props) {
+export const contentMenu = [
+  { text: 'Team updates' }
+  //   { text: 'Admin updates' }
+  //   { text: 'Tournament B' }
+]
+
+export function EditToolbarr (props) {
   const { setRows, setRowModesModel } = props
   const [searched, setSearched] = React.useState('')
   const dispatch = useDispatch()
@@ -143,7 +112,7 @@ export function EditToolbar (props) {
 
   const requestSearch = e => {
     const searchedVal = e.target.value
-    const filteredRows = initialRows.filter(row => {
+    const filteredRows = initialRowss.filter(row => {
       setSearched(searchedVal)
       return row.name.toLowerCase().includes(searchedVal.toLowerCase())
     })
@@ -182,19 +151,19 @@ export function EditToolbar (props) {
           onChange={requestSearch}
         />
       </Search>
-      <button className='pull-btn' color='primary' onClick={handleOpen}>
+      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;add new tournament
-      </button>
+        &nbsp;&nbsp;Add Update
+      </button> */}
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
-          <DialogTitle>add new tournament</DialogTitle>
-          <DialogContent className='bg-[#061727]'>
+          <DialogTitle>Edit Notification</DialogTitle>
+          <DialogContent>
             <TextField
               autoFocus
               margin='dense'
-              label='Tournament Name'
+              label='Title'
               type='text'
               fullWidth
               // value={initialRows.name}
@@ -204,7 +173,7 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='teams'
+              label='description'
               type='text'
               fullWidth
               // value={initialRows.pos}
@@ -214,7 +183,7 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='status'
+              label='type'
               type='text'
               fullWidth
               // value={initialRows.avatar}
@@ -224,7 +193,7 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='start date'
+              //             label='date'
               type='date'
               fullWidth
               // value={initialRows.avatar}
@@ -234,17 +203,7 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='End date'
-              type='date'
-              fullWidth
-              // value={initialRows.avatar}
-              // onChange={e =>
-              //   setinitialRows({ ...initialRows, avatar: e.target.value })
-              // }
-            />
-            <TextField
-              margin='dense'
-              label='Sponsor'
+              label='Publish by'
               type='text'
               fullWidth
               // value={initialRows.avatar}

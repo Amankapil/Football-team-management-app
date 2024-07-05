@@ -17,7 +17,7 @@ import {
 const TournamentManagement = () => {
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-0 pl0'>
+      <div className='max-w-6xl mx-auto mt-10 ml-28'>
         {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
         <CustomEditTable
           customToolbar={EditToolbar}

@@ -1,56 +1,125 @@
 import React from 'react'
+import CustomTab from '../../components/CustomTabs'
+import CustomEditTable from '../../components/CustomEditTable'
+// import {
+//   contentMenu,
+//   columns,
+//   EditToolbar,
+//   initialRows
+// } from '../AdminPage/datas/updates'
 import {
-  Box,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography
-} from '@mui/material'
-import NotificationsIcon from '@mui/icons-material/Notifications'
+  contentMenuu,
+  columnss,
+  EditToolbarr,
+  initialRowss
+} from '../AdminPage/datas/Approvedata'
 
-const notifications = [
-  'New message received lorem12jfdsjf;aksjdf;lask j;lksadjf;laksjdf;l as flkdsjhfjkads laskjhsdflkjasdhfl kasflkajsdhf lkasdjf ',
-  'Server downtime scheduled hfljdhalj jlkjs hfla  hlkjahsdfl ja hlkj fdhsl lkjdsh f',
-  'Update your profile information kjdslfja n hlkjads f hlkj dhfljash',
-  'New friend request',
-  'Your password will expire soon'
-]
+import PropTypes from 'prop-types'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
-const NotificationList = () => {
+function NotificationList () {
+  const [select, setSelect] = React.useState(0)
+  const [renderPage, setRenderPage] = React.useState(
+    <CustomEditTable
+      customToolbar={EditToolbarr}
+      columns={columnss}
+      data={initialRowss}
+      showActions={true}
+    />
+  )
+
+  const menuLists = ['Player request']
+  React.useEffect(() => {
+    handleMenu(select)
+  }, [])
+
+  const handleMenu = (index, text) => {
+    setSelect(index)
+    switch (index) {
+      case 0:
+        setRenderPage(
+          <CustomEditTable
+            customToolbar={EditToolbarr}
+            columns={columnss}
+            data={initialRowss}
+          />
+        )
+        break
+      // case 1:
+      //   setRenderPage(
+      //     <CustomEditTable
+      //       customToolbar={EditToolbar}
+      //       columns={columns}
+      //       data={initialRows}
+      //     />
+      //   )
+
+      //   break
+
+      default:
+        break
+    }
+  }
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh'
-      }}
-    >
-      <Box
-        sx={{
-          //           bgcolor: 'white',
-          boxShadow: 3,
-          borderRadius: 2,
-          p: 3,
-          minWidth: 300
-        }}
-      >
-        <Typography variant='h6' gutterBottom>
-          Notifications
-        </Typography>
-        <List>
-          {notifications.map((notification, index) => (
-            <ListItem className='text-[20px]' key={index}>
-              <ListItemIcon>
-                <NotificationsIcon color='primary' />
-              </ListItemIcon>
-              <ListItemText className='!text-[20px]' primary={notification} />
-            </ListItem>
+    <>
+      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+        {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
+
+        {/* <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>
+          {menuLists.map((item, index) => (
+            <li className='nav-item !text-[16px]' key={index}>
+              <a
+                className={
+                  ('nav-link', index == select && 'active text-yellow-200')
+                }
+                onClick={() => handleMenu(index, item)}
+              >
+                {item}
+              </a>
+            </li>
           ))}
-        </List>
-      </Box>
-    </Box>
+        </ul> */}
+
+        <Box sx={{ width: 'auto' }}>
+          <Box>
+            <Tabs
+              // indicatorColor={
+              //   borderShow === false || !borderShow ? '' : 'primary'
+              // }
+              sx={{
+                '& .Mui-selected': {
+                  // backgroundColor: !borderShow && '#0D1B28'
+                },
+                '& .MuiTab-root': {
+                  minHeight: '61px'
+                }
+              }}
+              // value={value}
+              // onChange={handleChange}
+              aria-label='basic tabs example'
+            >
+              {/* {menuLists.map((item, index) => (
+                <Tab
+                  key={index}
+                  // icon={item}
+                  className={
+                    ('nav-link', index == select && 'active text-yellow-200')
+                  }
+                  iconPosition='start'
+                  label={item}
+                  onClick={() => handleMenu(index, item)}
+                ></Tab>
+              ))} */}
+            </Tabs>
+          </Box>
+        </Box>
+
+        <div className='main-bod'>{renderPage}</div>
+      </div>
+    </>
   )
 }
 

@@ -90,8 +90,8 @@ export const columnss = [
 ]
 
 export const contentMenu = [
-  { text: 'Team updates' },
-  { text: 'Admin updates' }
+  { text: 'Team updates' }
+  //   { text: 'Admin updates' }
   //   { text: 'Tournament B' }
 ]
 
@@ -144,14 +144,14 @@ export function EditToolbarr (props) {
           onChange={requestSearch}
         />
       </Search>
-      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
+      <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
         &nbsp;&nbsp;Add Update
-      </button> */}
+      </button>
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
-          <DialogTitle>Edit Notification</DialogTitle>
+          <DialogTitle>Add Updates</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus

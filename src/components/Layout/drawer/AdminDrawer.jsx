@@ -48,8 +48,8 @@ export default function AdminDrawer () {
       text: 'Updates to public',
       icon: <GroupOutlinedIcon />,
       url: '/notificationManager'
-    },
-    { text: 'My Account', icon: <PermIdentityOutlinedIcon />, url: '/account' }
+    }
+    // { text: 'My Account', icon: <PermIdentityOutlinedIcon />, url: '/account' }
   ]
   const menuSetting = [
     { text: 'settings', icon: <SettingsOutlinedIcon /> },
