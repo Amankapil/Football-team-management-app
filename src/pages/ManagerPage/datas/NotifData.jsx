@@ -18,20 +18,19 @@ import {
 
 export const initialRows = [
   {
-    id: 0,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+    id: 1,
+    name: 'In a July 4 analytic report, CoinGecko.com, an on-chain crypto market data aggregator and a multi-chain non-fungible token explorer, has noted that the decentralized gaming sector has grown into a multi-billion dollar industry for the past three years, ',
 
     avatar: '/images/avatar/player.jpg',
     description: 'Defender',
     TournamentName: 'tournamentA',
     type: 'Good Performance',
     date: '01/01/2024',
-
     jersey: 22
   },
   {
-    id: 1,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+    id: 2,
+    name: 'In a July 4 analytic report, CoinGecko.com, an on-chain crypto market data aggregator and a multi-chain non-fungible token explorer, has noted that the decentralized gaming sector has grown into a multi-billion dollar industry for the past three years, ',
 
     avatar: '/images/avatar/player.jpg',
     description: 'Midfielder',
@@ -42,8 +41,8 @@ export const initialRows = [
     jersey: 22
   },
   {
-    id: 2,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+    id: 3,
+    name: 'In a July 4 analytic report, CoinGecko.com, an on-chain crypto market data aggregator and a multi-chain non-fungible token explorer, has noted that the decentralized gaming sector has grown into a multi-billion dollar industry for the past three years, ',
     avatar: '/images/avatar/player.jpg',
     description: 'Midfielder',
     TournamentName: randomTraderName(),
@@ -65,7 +64,7 @@ export const columns = [
   },
   {
     field: 'name',
-    headerName: 'NotificationList',
+    headerName: 'Title',
     width: 580,
     editable: true
   },
@@ -150,64 +149,66 @@ export function EditToolbar (props) {
       </button>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Official</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin='dense'
-            label='Title'
-            type='text'
-            fullWidth
-            // value={initialRows.name}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, name: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='description'
-            type='text'
-            fullWidth
-            // value={initialRows.pos}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, pos: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='type'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            //             label='date'
-            type='date'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Publish by'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Save</Button>
-        </DialogActions>
+        <div className='bg-[#061727]'>
+          <DialogTitle>Edit Official</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin='dense'
+              label='Title'
+              type='text'
+              fullWidth
+              // value={initialRows.name}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, name: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='description'
+              type='text'
+              fullWidth
+              // value={initialRows.pos}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, pos: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='type'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              //             label='date'
+              type='date'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Publish by'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Save</Button>
+          </DialogActions>
+        </div>
       </Dialog>
     </GridToolbarContainer>
   )

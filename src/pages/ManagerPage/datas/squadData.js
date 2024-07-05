@@ -18,7 +18,7 @@ import {
 
 export const initialRows = [
   {
-    id: 0,
+    id: 1,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
     Position: 'Defender',
@@ -27,7 +27,7 @@ export const initialRows = [
     jersey: 22
   },
   {
-    id: 1,
+    id: 2,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
     Position: 'Midfielder',
@@ -36,7 +36,7 @@ export const initialRows = [
     jersey: 22
   },
   {
-    id: 2,
+    id: 3,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
     Position: 'Midfielder',
@@ -182,54 +182,56 @@ export function EditToolbar (props) {
       </button>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Official</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin='dense'
-            label='Name'
-            type='text'
-            fullWidth
-            // value={initialRows.name}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, name: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Position'
-            type='text'
-            fullWidth
-            // value={initialRows.pos}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, pos: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='status'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Jersey Number'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Save</Button>
-        </DialogActions>
+        <div className='bg-[#061727]'>
+          <DialogTitle>Edit Team details</DialogTitle>
+          <DialogContent className='bg-[#061727]'>
+            <TextField
+              autoFocus
+              margin='dense'
+              label='Name'
+              type='text'
+              fullWidth
+              // value={initialRows.name}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, name: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Position'
+              type='text'
+              fullWidth
+              // value={initialRows.pos}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, pos: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='status'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Jersey Number'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Save</Button>
+          </DialogActions>
+        </div>
       </Dialog>
     </GridToolbarContainer>
   )

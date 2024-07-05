@@ -8,7 +8,6 @@ import {
   DataGrid,
   GridRowEditStopReasons,
   GridRowModes,
-  GridToolbarContainer,
   GridActionsCellItem
 } from '@mui/x-data-grid'
 
@@ -17,7 +16,8 @@ export default function CustomEditTable ({
   columns,
   data,
   actionMode,
-  option
+  option,
+  showActions = true // Add a new prop with a default value
 }) {
   const [rows, setRows] = React.useState(data)
   const [rowModesModel, setRowModesModel] = React.useState({})
@@ -108,15 +108,6 @@ export default function CustomEditTable ({
     }
   }
 
-  // New number column
-  // const numberColumn = {
-  //   field: 'number',
-  //   headerName: 'Number',
-  //   width: 150,
-  //   editable: true,
-  //   type: 'number'
-  // }
-
   return (
     <Box
       sx={{
@@ -126,7 +117,7 @@ export default function CustomEditTable ({
     >
       <DataGrid
         rows={rows}
-        columns={[...columns, actionMode ?? addColumns]}
+        columns={showActions ? [...columns, addColumns] : columns} // Conditionally add action columns
         editMode='row'
         {...option}
         rowModesModel={rowModesModel}
@@ -154,7 +145,7 @@ export default function CustomEditTable ({
           '& .MuiDataGrid-row': {
             borderRadius: 2,
             margin: '5px 0',
-            backgroundColor: '#041421',
+            backgroundColor: '#061727',
             '--rowBorderColor': 'none'
           },
           '& .MuiDataGrid-row.Mui-selected': {

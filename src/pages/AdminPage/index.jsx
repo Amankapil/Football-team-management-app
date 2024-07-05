@@ -21,9 +21,7 @@ function AdminPage () {
 
   React.useEffect(() => {
     if (linkFlag == true) {
-      dispatch(
-        setBreadCrumbs('set', { icon: '', text: 'Tournament Management' })
-      )
+      dispatch(setBreadCrumbs('set', { icon: '', text: '' }))
       linkFlag = false
     }
     switch (key) {
@@ -45,7 +43,7 @@ function AdminPage () {
   return (
     <Main open={open}>
       <DrawerHeader />
-      <CustomBreadcrumbs data={breadcrumbs} />
+      {/* <CustomBreadcrumbs data={breadcrumbs} /> */}
       {RenderPage}
     </Main>
   )

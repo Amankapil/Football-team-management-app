@@ -14,6 +14,12 @@ import {
   initialRowss
 } from './datas/adminNoti'
 
+import PropTypes from 'prop-types'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+
 function Notimanage () {
   const [select, setSelect] = React.useState(0)
   const [renderPage, setRenderPage] = React.useState(
@@ -60,10 +66,10 @@ function Notimanage () {
   }
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20'>
         {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
 
-        <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>
+        {/* <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>
           {menuLists.map((item, index) => (
             <li className='nav-item !text-[16px]' key={index}>
               <a
@@ -76,7 +82,41 @@ function Notimanage () {
               </a>
             </li>
           ))}
-        </ul>
+        </ul> */}
+
+        <Box sx={{ width: 'auto' }}>
+          <Box>
+            <Tabs
+              // indicatorColor={
+              //   borderShow === false || !borderShow ? '' : 'primary'
+              // }
+              sx={{
+                '& .Mui-selected': {
+                  // backgroundColor: !borderShow && '#0D1B28'
+                },
+                '& .MuiTab-root': {
+                  minHeight: '61px'
+                }
+              }}
+              // value={value}
+              // onChange={handleChange}
+              aria-label='basic tabs example'
+            >
+              {menuLists.map((item, index) => (
+                <Tab
+                  key={index}
+                  // icon={item}
+                  className={
+                    ('nav-link', index == select && 'active text-yellow-200')
+                  }
+                  iconPosition='start'
+                  label={item}
+                  onClick={() => handleMenu(index, item)}
+                ></Tab>
+              ))}
+            </Tabs>
+          </Box>
+        </Box>
 
         <div className='main-body'>{renderPage}</div>
       </div>

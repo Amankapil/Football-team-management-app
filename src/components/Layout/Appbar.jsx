@@ -143,13 +143,13 @@ export default function PersistentDrawerRight () {
             <Box
               sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}
             >
-              <Fab
+              {/* <Fab
                 size='small'
                 aria-label='add'
                 sx={{ margin: 1, backgroundColor: '#303D46' }}
               >
                 <SearchIcon sx={{ color: '#738089' }} />
-              </Fab>
+              </Fab> */}
               {!authentification && (
                 <Fab
                   size={'small'}
@@ -165,7 +165,7 @@ export default function PersistentDrawerRight () {
                   <LoginIcon sx={{ ml: 1 }} />
                 </Fab>
               )}
-              {/* {authentification && role !== 'common' && (
+              {authentification && role !== 'common' && (
                 <Avatar
                   size='large'
                   edge='end'
@@ -174,10 +174,10 @@ export default function PersistentDrawerRight () {
                   aria-haspopup='true'
                   // onClick={handleProfileMenuOpen}
                   color='inherit'
-                  src='/images/avatar/manager.jpg'
+                  src='https://lsm-static-prod.livescore.com/medium/enet/9825.png'
                 ></Avatar>
-              )} */}
-              <Fab
+              )}
+              {/* <Fab
                 size='small'
                 aria-label='setting'
                 sx={{ margin: 1, backgroundColor: '#303D46' }}
@@ -208,10 +208,10 @@ export default function PersistentDrawerRight () {
                     </MenuItem>
                   ))}
                 </Menu>
-              </Fab>
+              </Fab> */}
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <Box sx={{ flexGrow: 0 }}>
+              {/* <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleMenu} sx={{ p: 0 }}>
                     <MoreIcon />
@@ -239,7 +239,7 @@ export default function PersistentDrawerRight () {
                     </MenuItem>
                   ))}
                 </Menu>
-              </Box>
+              </Box> */}
             </Box>
           </TopToolbar>
         </AppBar>
@@ -267,7 +267,7 @@ export default function PersistentDrawerRight () {
 
           <Divider />
 
-          {/* {!authentification && role == 'common' && (
+          {!authentification && role == 'common' && (
             <Search
               sx={{ borderRadius: 25, width: '100%', m: '30px 0 20px 0' }}
             >
@@ -279,7 +279,7 @@ export default function PersistentDrawerRight () {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
-          )} */}
+          )}
 
           {/* This is profile avatar */}
           {authentification && role != 'common' && (
@@ -306,8 +306,8 @@ export default function PersistentDrawerRight () {
           {!authentification && role == 'common' && (
             <>
               {/* <div className='fixed left-0 '> */}
-              <UserDrawer />
-              {/* <AdminDrawer /> */}
+              {/* <UserDrawer /> */}
+              <AdminDrawer />
               {/* <ManagerDrawer /> */}
               {/* </div> */}
             </>

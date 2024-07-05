@@ -17,17 +17,6 @@ import {
 
 export const initialRows = [
   {
-    id: 0,
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    pos: 'Coach',
-    // JoinDate: 'Coach',
-    Email: 'Coach',
-    Contact: 'Coach',
-    date: '01/01/2024',
-    status: 'pending'
-  },
-  {
     id: 1,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
@@ -40,6 +29,17 @@ export const initialRows = [
   },
   {
     id: 2,
+    name: randomTraderName(),
+    avatar: '/images/avatar/player.jpg',
+    pos: 'Coach',
+    // JoinDate: 'Coach',
+    Email: 'Coach',
+    Contact: 'Coach',
+    date: '01/01/2024',
+    status: 'pending'
+  },
+  {
+    id: 3,
     name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
     pos: 'Coach',
@@ -190,7 +190,7 @@ export function EditToolbar (props) {
       </Search>
       <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;Add New Offical
+        &nbsp;&nbsp;Add New player
       </button>
 
       <Dialog
@@ -198,86 +198,88 @@ export function EditToolbar (props) {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Edit Official</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin='dense'
-            label='Name'
-            type='text'
-            fullWidth
-            // value={initialRows.name}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, name: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Position'
-            type='text'
-            fullWidth
-            // value={initialRows.pos}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, pos: e.target.value })
-            // }
-          />
+        <div className='bg-[#061727]'>
+          <DialogTitle>Edit Official</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin='dense'
+              label='Name'
+              type='text'
+              fullWidth
+              // value={initialRows.name}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, name: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Position'
+              type='text'
+              fullWidth
+              // value={initialRows.pos}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, pos: e.target.value })
+              // }
+            />
 
-          <TextField
-            margin='dense'
-            label='Jersey Number'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Join date'
-            type='date'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Email'
-            type='email'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='Contact Number'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
+            <TextField
+              margin='dense'
+              label='Jersey Number'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Join date'
+              type='date'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Email'
+              type='email'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='Contact Number'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
 
-          <TextField
-            margin='dense'
-            label='status'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Save</Button>
-        </DialogActions>
+            <TextField
+              margin='dense'
+              label='status'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Save</Button>
+          </DialogActions>
+        </div>
       </Dialog>
     </GridToolbarContainer>
   )

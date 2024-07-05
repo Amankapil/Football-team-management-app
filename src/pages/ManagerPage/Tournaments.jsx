@@ -18,12 +18,13 @@ function Tournaments () {
   const menuItems = [1, 2, 3, 4]
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20'>
         <CustomTab borderShow={true} tabData={contentMenu} />
         <CustomEditTable
-          customToolbar={EditToolbar}
+          // customToolbar={EditToolbar}
           columns={columns}
           data={initialRows}
+          showActions={false}
         />
       </div>
     </>

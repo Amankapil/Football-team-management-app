@@ -244,44 +244,45 @@ export function EditToolbar (props) {
       </Search>
       <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;add player into squad
+        &nbsp;&nbsp;add transfer request
       </button>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Official</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin='dense'
-            label='Player'
-            type='text'
-            fullWidth
-            // value={initialRows.name}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, name: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='From team'
-            type='text'
-            fullWidth
-            // value={initialRows.pos}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, pos: e.target.value })
-            // }
-          />
-          <TextField
-            margin='dense'
-            label='To team'
-            type='text'
-            fullWidth
-            // value={initialRows.avatar}
-            // onChange={e =>
-            //   setinitialRows({ ...initialRows, avatar: e.target.value })
-            // }
-          />
-          {/* <TextField
+        <div className='bg-[#061727]'>
+          <DialogTitle>Edit transfer request</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin='dense'
+              label='Player'
+              type='text'
+              fullWidth
+              // value={initialRows.name}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, name: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='From team'
+              type='text'
+              fullWidth
+              // value={initialRows.pos}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, pos: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='To team'
+              type='text'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            {/* <TextField
             margin='dense'
             label='Jersey Number'
             type='text'
@@ -291,11 +292,12 @@ export function EditToolbar (props) {
             //   setinitialRows({ ...initialRows, avatar: e.target.value })
             // }
           /> */}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Save</Button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Save</Button>
+          </DialogActions>
+        </div>
       </Dialog>
     </GridToolbarContainer>
   )

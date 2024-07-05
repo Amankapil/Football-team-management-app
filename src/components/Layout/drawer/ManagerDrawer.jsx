@@ -35,8 +35,8 @@ export default function ManagerDrawer () {
       text: 'Official updates',
       icon: <PersonOutlinedIcon />,
       url: '/team-manager-request'
-    },
-    { text: 'My Account', icon: <PersonOutlinedIcon />, url: '/account' }
+    }
+    // { text: 'My Account', icon: <PersonOutlinedIcon />, url: '/account' }
   ]
   const menuSetting = [
     { text: 'settings', icon: <SettingsOutlinedIcon /> },

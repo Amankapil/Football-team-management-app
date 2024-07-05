@@ -19,39 +19,30 @@ import {
 export const initialRows = [
   {
     id: 1,
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    Position: 'Defender',
-    date: '01/01/2024',
-    status: 'pending',
-    TournamentName: randomTraderName(),
-    teamA: 'a',
-    teamB: 'a',
-    place: 'surat'
+    name: 'Team Alpha',
+    logo: 'https://via.placeholder.com/50',
+    contact: 'alpha@example.com',
+    manager: 'John Doe',
+    players: ['Player 1', 'Player 2'],
+    avatar: '/images/avatar/player.jpg'
   },
   {
     id: 2,
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    Position: 'Midfielder',
-    TournamentName: randomTraderName(),
-    date: '01/01/2024',
-    status: 'Compeleted',
-    teamA: 'a',
-    teamB: 'a',
-    place: 'surat'
+    name: 'Team Beta',
+    logo: 'https://via.placeholder.com/50',
+    contact: 'beta@example.com',
+    manager: 'Jane Smith',
+    players: ['Player 3', 'Player 4'],
+    avatar: '/images/avatar/player.jpg'
   },
   {
-    id: 2,
-    name: randomTraderName(),
-    avatar: '/images/avatar/player.jpg',
-    Position: 'Midfielder',
-    TournamentName: randomTraderName(),
-    date: '01/01/2024',
-    status: 'Upcoming',
-    teamA: 'a',
-    teamB: 'a',
-    place: 'surat'
+    id: 3,
+    name: 'Team Gamma',
+    logo: 'https://via.placeholder.com/50',
+    contact: 'gamma@example.com',
+    manager: 'Mike Johnson',
+    players: ['Player 5', 'Player 6'],
+    avatar: '/images/avatar/player.jpg'
   }
 ]
 
@@ -65,73 +56,77 @@ export const columns = [
     type: 'singleSelect'
   },
   {
-    field: 'date',
-    headerName: 'Date',
+    field: 'logo',
+    headerName: 'Logo.',
+    width: 100,
+    align: 'left',
+    headerAlign: 'left',
+    type: 'singleSelect',
+    renderCell: params => {
+      return (
+        <div className='d-flex'>
+          <Avatar src={params.row.logo} sx={{ margin: '5px 20px 5px 0' }} />
+        </div>
+      )
+    }
+  },
+  {
+    field: 'name',
+    headerName: 'Name',
+    width: 150,
+    editable: false,
+    renderCell: params => {
+      return (
+        <div className='d-flex'>
+          {/* <Avatar src={params.row.avatar} sx={{ margin: '5px 20px 5px 0' }} /> */}
+          <span>{params.row.name}</span>
+        </div>
+      )
+    }
+  },
+  {
+    field: 'contact',
+    headerName: 'Contact',
     width: 150,
     align: 'left',
     headerAlign: 'left',
-    type: 'singleSelect'
+    type: 'singleSelect',
+    valueOptions: ['Goal Keeper', 'Defender', 'Midfielder'],
+    editable: true,
+    valueFormatter: (value, row, func) => {
+      return func.valueOptions[value]
+    }
   },
   {
-    field: 'place',
-    headerName: 'Place',
-    width: 150,
-    editable: false
-  },
-  {
-    field: 'TournamentName',
-    headerName: 'TournamentName',
-    width: 150,
-    editable: false
-  },
-  {
-    field: 'teamA',
-    headerName: 'team1',
-    width: 150,
-    editable: false
-  },
-  {
-    field: 'teamB',
-    headerName: 'team2',
-    width: 150,
-    editable: false
-  },
-  //   {
-  //     field: 'Position',
-  //     headerName: 'Position',
-  //     width: 150,
-  //     align: 'left',
-  //     headerAlign: 'left',
-  //     type: 'singleSelect',
-  //     valueOptions: ['Goal Keeper', 'Defender', 'Midfielder'],
-  //     editable: true,
-  //     valueFormatter: (value, row, func) => {
-  //       return func.valueOptions[value]
-  //     }
-  //   },
-
-  {
-    field: 'status',
-    headerName: 'Status',
-    width: 150,
+    field: 'manager',
+    headerName: 'Manager',
+    width: 120,
     align: 'left',
     headerAlign: 'left',
     editable: true,
-    type: 'singleSelect',
-    valueOptions: ['Compeleted', 'Pending', 'Upcoming'],
-    renderCell: params => {
-      const value = params.value
-      if (value === 'Compeleted') return <font color='green'>{value}</font>
-      else if (value === 'Upcoming') return <font color='orange'>{value}</font>
-      else return <font color='red'>{value}</font>
-    }
+    type: 'number'
+    // renderCell: params => {
+    //   return params.value + '%'
+    // }
+  },
+  {
+    field: 'players',
+    headerName: 'Players',
+    width: 120,
+    align: 'left',
+    headerAlign: 'left',
+    editable: true,
+    type: 'number'
+    // renderCell: params => {
+    //   return params.value + '%'
+    // }
   }
 ]
 
 export const contentMenu = [
-  { text: 'All Match' },
-  { text: ' Live Matches' },
-  { text: 'Upcoming match' }
+  { text: 'All Squad' },
+  { text: 'Tournament A' },
+  { text: 'Tournament B' }
 ]
 
 export function EditToolbar (props) {
@@ -183,15 +178,15 @@ export function EditToolbar (props) {
           onChange={requestSearch}
         />
       </Search>
-      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
+      <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;add player into squad
-      </button> */}
+        &nbsp;&nbsp;add new player
+      </button>
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
-          <DialogTitle>Edit Matches</DialogTitle>
-          <DialogContent>
+          <DialogTitle>Add new player</DialogTitle>
+          <DialogContent className='bg-[#061727]'>
             <TextField
               autoFocus
               margin='dense'
@@ -205,8 +200,8 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='Position'
-              type='text'
+              label='Logo'
+              type='file'
               fullWidth
               // value={initialRows.pos}
               // onChange={e =>
@@ -215,8 +210,8 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='status'
-              type='text'
+              label='contact'
+              type='email'
               fullWidth
               // value={initialRows.avatar}
               // onChange={e =>
@@ -225,7 +220,7 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='Jersey Number'
+              label='Players'
               type='text'
               fullWidth
               // value={initialRows.avatar}
