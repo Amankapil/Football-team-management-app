@@ -72,7 +72,7 @@ export default function CustomizedDialogs () {
   return (
     <React.Fragment>
       <div className='fixed h-screen bg-slate-50'>
-        {forget ? (
+        {/* {forget ? (
           <>
             <ForgotPassword />
           </>
@@ -80,7 +80,7 @@ export default function CustomizedDialogs () {
           <>
             <h1>j</h1>
           </>
-        )}
+        )} */}
       </div>
       <BootstrapDialog
         onClose={handleClose}
@@ -166,8 +166,8 @@ export default function CustomizedDialogs () {
                 <Link
                   to='/forget-password'
                   onClick={() => {
-                    setForget(true)
-                    console.log('cle')
+                    // setForget(true)
+                    // console.log('cle')
                     dispatch(openSignModal(false))
                   }}
                 >
