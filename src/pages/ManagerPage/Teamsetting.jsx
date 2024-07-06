@@ -22,6 +22,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import CloseIcon from '@mui/icons-material/Close'
+import { LogoDev } from '@mui/icons-material'
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor='photo-upload' className='custom-file-upload fas'>
@@ -31,7 +32,7 @@ const ImgUpload = ({ onChange, src }) => (
     <input id='photo-upload' type='file' onChange={onChange} />
   </label>
 )
-const Managersettingpage = () => {
+const Teamsetting = () => {
   const [state, setState] = React.useState({
     file: '',
     imagePreviewUrl:
@@ -46,32 +47,56 @@ const Managersettingpage = () => {
         <div className='d-flex align-center sign-form'>
           <Box sx={{ marginLeft: '50px' }}>
             <Typography variant='h4' gutterBottom>
-              Team Manager Detail
+              Team Detail
             </Typography>
             <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
               <OutlinedInput
                 id='outlined-adornment-email'
                 type='text'
-                placeholder='Change User name'
+                placeholder='Change team name'
                 startAdornment={
                   <InputAdornment position='start'>
                     <EmailOutlinedIcon />
                   </InputAdornment>
                 }
-                //                 onChange={handleEmail}
-                //                 value={email}
               />
             </FormControl>
             <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
               <OutlinedInput
                 id='outlined-adornment-password'
                 type='password'
-                placeholder='Change Password'
+                placeholder='Change Player details'
                 //                 onChange={handlePassword}
                 //                 value={password}
                 startAdornment={
                   <InputAdornment position='start'>
                     <HttpsOutlinedIcon />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      aria-label='toggle password visibility'
+                      //                       onClick={handleClickShowPassword}
+                      //                       onMouseDown={handleMouseDownPassword}
+                      edge='end'
+                    >
+                      {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
+              <OutlinedInput
+                id='outlined-adornment-password'
+                type='file'
+                placeholder='Change logo'
+                //                 onChange={handlePassword}
+                //                 value={password}
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <LogoDev />
                   </InputAdornment>
                 }
                 endAdornment={
@@ -109,4 +134,4 @@ const Managersettingpage = () => {
   )
 }
 
-export default Managersettingpage
+export default Teamsetting

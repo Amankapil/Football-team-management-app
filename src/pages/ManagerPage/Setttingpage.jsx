@@ -21,6 +21,7 @@ import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Managersettingpage from './Managersettingpage'
+import Teamsetting from './Teamsetting'
 
 function Setttingpage () {
   const [select, setSelect] = React.useState(0)
@@ -43,13 +44,7 @@ function Setttingpage () {
     setSelect(index)
     switch (index) {
       case 0:
-        setRenderPage(
-          <CustomEditTable
-            customToolbar={EditToolbar}
-            columns={columns}
-            data={initialRows}
-          />
-        )
+        setRenderPage(<Teamsetting />)
         break
       case 1:
         setRenderPage(<Managersettingpage />)
@@ -80,13 +75,16 @@ function Setttingpage () {
               // value={value}
               // onChange={handleChange}
               aria-label='basic tabs example'
+              className='bg-[#061727]'
             >
               {menuLists.map((item, index) => (
                 <Tab
                   key={index}
                   // icon={item}
                   className={
-                    ('nav-link', index == select && 'active text-yellow-200')
+                    ('nav-link ',
+                    index == select &&
+                      '!active !text-yellow-200 !border-b-2 !border-amber-200')
                   }
                   iconPosition='start'
                   label={item}

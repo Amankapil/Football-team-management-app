@@ -50,13 +50,14 @@ export default function CustomizedDialogs () {
   }, [stateOpen])
   React.useEffect(() => {
     setOpen2(!open2)
-  }, [stateOpen])
+  }, [stateOpen2])
 
   const navigate = useNavigate()
 
   const handleClose = () => dispatch(openSignModal(false))
   const handleClose2 = () => {
-    setOpen2(!open2)
+    // setOpen2(false)
+    setForget(false)
   }
   // const handleClose1 = () => dispatch(openSignModal(false))
   const handlePassword = e => setPassword(e.target.value)
@@ -81,7 +82,7 @@ export default function CustomizedDialogs () {
   return (
     <React.Fragment>
       <div className='fixed h-screen bg-slate-50'>
-        {forget ? (
+        {forget && (
           <>
             <BootstrapDialog
               // onClose={handleClose1}
@@ -116,7 +117,7 @@ export default function CustomizedDialogs () {
                   </div>
                   <Box sx={{ marginLeft: '50px' }}>
                     <Typography variant='h4' gutterBottom>
-                      pass reset
+                      password reset
                     </Typography>
                     <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
                       <OutlinedInput
@@ -138,10 +139,10 @@ export default function CustomizedDialogs () {
                       alignItems={'center'}
                       justifyContent={'space-between'}
                     >
-                      <FormControlLabel
+                      {/* <FormControlLabel
                         control={<Checkbox />}
                         label='Remember me'
-                      />
+                      /> */}
                       {/* <Link
                         to='/forget-password'
                         onClick={() => {
@@ -164,10 +165,6 @@ export default function CustomizedDialogs () {
                 </div>
               </DialogContent>
             </BootstrapDialog>
-          </>
-        ) : (
-          <>
-            <h1>j</h1>
           </>
         )}
       </div>

@@ -30,35 +30,35 @@ export const initialRows = [
     yellowcards: 25,
     redcards: 2,
     points: 48
-  },
-  {
-    id: 2,
-    name: 'Team B',
-    playedMatch: 20,
-    wins: 15,
-    draws: 3,
-    losses: 2,
-    goalsFor: 45,
-    goalsAgains: 20,
-    cleansheet: 10,
-    yellowcards: 25,
-    redcards: 2,
-    points: 48
   }
+  //   {
+  //     id: 2,
+  //     name: 'Team B',
+  //     playedMatch: 20,
+  //     wins: 15,
+  //     draws: 3,
+  //     losses: 2,
+  //     goalsFor: 45,
+  //     goalsAgains: 20,
+  //     cleansheet: 10,
+  //     yellowcards: 25,
+  //     redcards: 2,
+  //     points: 48
+  //   }
 ]
 
 export const columns = [
-  {
-    field: 'id',
-    headerName: 'No.',
-    width: 70,
-    align: 'left',
-    headerAlign: 'left',
-    type: 'singleSelect'
-  },
+  //   {
+  //     field: 'id',
+  //     headerName: 'No.',
+  //     width: 70,
+  //     align: 'left',
+  //     headerAlign: 'left',
+  //     type: 'singleSelect'
+  //   },
   {
     field: 'name',
-    headerName: 'Team Name',
+    headerName: ' ',
     width: 70,
     editable: false
   },
@@ -212,7 +212,7 @@ export function EditToolbar (props) {
     <GridToolbarContainer
       sx={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0' }}
     >
-      <Search sx={{ borderRadius: 25 }}>
+      {/* <Search sx={{ borderRadius: 25 }}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -222,11 +222,11 @@ export function EditToolbar (props) {
           value={searched}
           onChange={requestSearch}
         />
-      </Search>
-      <button className='pull-btn' color='primary' onClick={handleOpen}>
+      </Search> */}
+      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
         &nbsp;&nbsp;add player into squad
-      </button>
+      </button> */}
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
