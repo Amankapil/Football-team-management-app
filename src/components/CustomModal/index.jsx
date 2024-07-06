@@ -36,7 +36,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export default function CustomizedDialogs () {
   const stateOpen = useSelector(state => state.signModal.open)
+  const stateOpen2 = useSelector(state => state.signModal.open)
   const [open, setOpen] = React.useState(false)
+  const [open2, setOpen2] = React.useState(false)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [forget, setForget] = React.useState(false)
@@ -46,10 +48,17 @@ export default function CustomizedDialogs () {
   React.useEffect(() => {
     setOpen(stateOpen)
   }, [stateOpen])
+  React.useEffect(() => {
+    setOpen2(!open2)
+  }, [stateOpen])
 
   const navigate = useNavigate()
 
   const handleClose = () => dispatch(openSignModal(false))
+  const handleClose2 = () => {
+    setOpen2(!open2)
+  }
+  // const handleClose1 = () => dispatch(openSignModal(false))
   const handlePassword = e => setPassword(e.target.value)
   const handleEmail = e => setEmail(e.target.value)
 
@@ -72,15 +81,95 @@ export default function CustomizedDialogs () {
   return (
     <React.Fragment>
       <div className='fixed h-screen bg-slate-50'>
-        {/* {forget ? (
+        {forget ? (
           <>
-            <ForgotPassword />
+            <BootstrapDialog
+              // onClose={handleClose1}
+              aria-labelledby='customized-dialog-title'
+              open={open2}
+              sx={{
+                '& .MuiDialog-paper': {
+                  backgroundColor: 'transparent',
+                  backgroundImage: 'none'
+                }
+              }}
+            >
+              <IconButton
+                aria-label='close'
+                onClick={handleClose2}
+                sx={{
+                  position: 'absolute',
+                  right: 8,
+                  top: 8,
+                  color: theme => theme.palette.grey[500]
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+              <DialogContent
+                dividers
+                sx={{ backgroundColor: '#001835d4', border: 'none' }}
+              >
+                <div className='d-flex align-center sign-form'>
+                  <div className='sign-logo'>
+                    <img src='/images/GFA_logo.svg' alt='' />
+                  </div>
+                  <Box sx={{ marginLeft: '50px' }}>
+                    <Typography variant='h4' gutterBottom>
+                      pass reset
+                    </Typography>
+                    <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
+                      <OutlinedInput
+                        id='outlined-adornment-email'
+                        type='text'
+                        placeholder='Enter Email to get password reset link'
+                        startAdornment={
+                          <InputAdornment position='start'>
+                            <EmailOutlinedIcon />
+                          </InputAdornment>
+                        }
+                        onChange={handleEmail}
+                        value={email}
+                      />
+                    </FormControl>
+
+                    <Stack
+                      direction={'row'}
+                      alignItems={'center'}
+                      justifyContent={'space-between'}
+                    >
+                      <FormControlLabel
+                        control={<Checkbox />}
+                        label='Remember me'
+                      />
+                      {/* <Link
+                        to='/forget-password'
+                        onClick={() => {
+                          setForget(true)
+                          // console.log('cle')
+                          dispatch(openSignModal(false))
+                        }}
+                      >
+                        Forgot password?
+                      </Link> */}
+                    </Stack>
+                    <button
+                      onClick={handleLogin}
+                      className='pull-btn text-center text-dark'
+                      style={{ width: '100%', marginTop: '20px' }}
+                    >
+                      Submit
+                    </button>
+                  </Box>
+                </div>
+              </DialogContent>
+            </BootstrapDialog>
           </>
         ) : (
           <>
             <h1>j</h1>
           </>
-        )} */}
+        )}
       </div>
       <BootstrapDialog
         onClose={handleClose}
@@ -163,16 +252,16 @@ export default function CustomizedDialogs () {
                 justifyContent={'space-between'}
               >
                 <FormControlLabel control={<Checkbox />} label='Remember me' />
-                <Link
-                  to='/forget-password'
+                <div
+                  // to='/forget-password'
                   onClick={() => {
-                    // setForget(true)
-                    // console.log('cle')
+                    setForget(true)
+                    console.log('cle')
                     dispatch(openSignModal(false))
                   }}
                 >
                   Forgot password?
-                </Link>
+                </div>
               </Stack>
               <button
                 onClick={handleLogin}
