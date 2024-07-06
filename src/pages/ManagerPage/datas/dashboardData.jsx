@@ -56,12 +56,7 @@ export const columns = [
   //     headerAlign: 'left',
   //     type: 'singleSelect'
   //   },
-  {
-    field: 'name',
-    headerName: ' ',
-    width: 70,
-    editable: false
-  },
+
   {
     field: 'playedMatch',
     headerName: 'played Matchs',
