@@ -16,85 +16,165 @@ import {
   TextField
 } from '@mui/material'
 
-export const initialRowss = [
+export const initialRows = [
   {
     id: 1,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
-    avatar: '/images/avatar/player.jpg',
-    description: 'Defender',
-    TournamentName: 'tournamentA',
-    type: 'Good Performance',
-    date: '01/01/2024',
-
-    jersey: 22
+    name: 'Team A',
+    playedMatch: 20,
+    wins: 15,
+    draws: 3,
+    losses: 2,
+    goalsFor: 45,
+    goalsAgains: 20,
+    cleansheet: 10,
+    yellowcards: 25,
+    redcards: 2,
+    points: 48
   },
   {
     id: 2,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
-
-    avatar: '/images/avatar/player.jpg',
-    description: 'Midfielder',
-    TournamentName: randomTraderName(),
-    type: 'Injury',
-    date: '01/01/2024',
-
-    jersey: 22
-  },
-  {
-    id: 3,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
-    avatar: '/images/avatar/player.jpg',
-    description: 'Midfielder',
-    TournamentName: randomTraderName(),
-    type: 'Injury',
-    date: '01/01/2024',
-
-    jersey: 22
+    name: 'Team B',
+    playedMatch: 20,
+    wins: 15,
+    draws: 3,
+    losses: 2,
+    goalsFor: 45,
+    goalsAgains: 20,
+    cleansheet: 10,
+    yellowcards: 25,
+    redcards: 2,
+    points: 48
   }
 ]
 
-export const columnss = [
+export const columns = [
   {
     field: 'id',
     headerName: 'No.',
-    width: 50,
+    width: 70,
     align: 'left',
     headerAlign: 'left',
     type: 'singleSelect'
   },
   {
     field: 'name',
-    headerName: 'Title',
-    width: 180,
+    headerName: 'Team Name',
+    width: 70,
+    editable: false
+  },
+  {
+    field: 'playedMatch',
+    headerName: 'played Matchs',
+    width: 70,
+    align: 'left',
+    headerAlign: 'left',
+    type: 'singleSelect'
+    //     valueOptions: ['Goal Keeper', 'Defender', 'Midfielder'],
+    //     editable: true,
+    //     valueFormatter: (value, row, func) => {
+    //       return func.valueOptions[value]
+    //     }
+  },
+  {
+    field: 'wins',
+    headerName: 'Wins',
+    width: 70,
+    align: 'left',
+    headerAlign: 'left',
+    editable: true,
+    type: 'number'
+    // renderCell: params => {
+    //   return params.value + '%'
+    // }
+  },
+  {
+    field: 'draws',
+    headerName: 'Draws',
+    width: 70,
+    align: 'left',
+    headerAlign: 'left',
+    editable: true,
+    type: 'singleSelect'
+    //     valueOptions: ['Good Performance', 'Injury']
+    //     renderCell: params => {
+    //       const value = params.value
+    //       if (value === 'Good Performance')
+    //         return <font color='green'>{value}</font>
+    //       else return <font color='red'>{value}</font>
+    //     }
+  },
+  {
+    field: 'losses',
+    headerName: 'Losses',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
     editable: true
   },
   {
-    field: 'description',
-    headerName: 'Description',
-    width: 100,
+    field: 'goalsFor',
+    headerName: 'GoalsFor',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
     editable: true
   },
   {
-    field: 'type',
-    headerName: 'Type',
-    width: 100,
+    field: 'goalsAgains',
+    headerName: 'GoalsAgainst',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
     editable: true
   },
   {
-    field: 'date',
-    headerName: 'Date',
-    width: 100,
+    field: 'cleansheet',
+    headerName: 'Cleansheet',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
+    editable: true
+  },
+  {
+    field: 'yellowcards',
+    headerName: 'Yellowcards',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
+    editable: true
+  },
+  {
+    field: 'redcards',
+    headerName: 'Redcards',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
+    editable: true
+  },
+  {
+    field: 'points',
+    headerName: 'Points',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 70,
     editable: true
   }
 ]
 
 export const contentMenu = [
-  { text: 'Team updates' },
-  { text: 'Admin updates' }
-  //   { text: 'Tournament B' }
+  { text: 'All Squad' },
+  { text: 'Tournament A' },
+  { text: 'Tournament B' }
 ]
 
-export function EditToolbarr (props) {
+export function EditToolbar (props) {
   const { setRows, setRowModesModel } = props
   const [searched, setSearched] = React.useState('')
   const dispatch = useDispatch()
@@ -104,7 +184,7 @@ export function EditToolbarr (props) {
 
   const requestSearch = e => {
     const searchedVal = e.target.value
-    const filteredRows = initialRowss.filter(row => {
+    const filteredRows = initialRows.filter(row => {
       setSearched(searchedVal)
       return row.name.toLowerCase().includes(searchedVal.toLowerCase())
     })
@@ -143,19 +223,19 @@ export function EditToolbarr (props) {
           onChange={requestSearch}
         />
       </Search>
-      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
+      <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;Add Update
-      </button> */}
+        &nbsp;&nbsp;add player into squad
+      </button>
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
-          <DialogTitle>Edit Notification</DialogTitle>
-          <DialogContent>
+          <DialogTitle>Edit Team details</DialogTitle>
+          <DialogContent className='bg-[#061727]'>
             <TextField
               autoFocus
               margin='dense'
-              label='Title'
+              label='Name'
               type='text'
               fullWidth
               // value={initialRows.name}
@@ -165,7 +245,7 @@ export function EditToolbarr (props) {
             />
             <TextField
               margin='dense'
-              label='description'
+              label='Position'
               type='text'
               fullWidth
               // value={initialRows.pos}
@@ -175,7 +255,7 @@ export function EditToolbarr (props) {
             />
             <TextField
               margin='dense'
-              label='type'
+              label='status'
               type='text'
               fullWidth
               // value={initialRows.avatar}
@@ -185,17 +265,7 @@ export function EditToolbarr (props) {
             />
             <TextField
               margin='dense'
-              //             label='date'
-              type='date'
-              fullWidth
-              // value={initialRows.avatar}
-              // onChange={e =>
-              //   setinitialRows({ ...initialRows, avatar: e.target.value })
-              // }
-            />
-            <TextField
-              margin='dense'
-              label='Publish by'
+              label='Jersey Number'
               type='text'
               fullWidth
               // value={initialRows.avatar}

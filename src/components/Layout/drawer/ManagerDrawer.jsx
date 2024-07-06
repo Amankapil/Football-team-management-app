@@ -18,6 +18,7 @@ export default function ManagerDrawer () {
   const menus = [
     { text: 'squad', icon: <PersonOutlinedIcon />, url: '/squad' },
     { text: 'Tournaments', icon: <GroupOutlinedIcon />, url: '/tournaments' },
+    { text: 'Dashboard', icon: <GroupOutlinedIcon />, url: '/dashboard' },
     {
       text: 'Manage Team Players',
       icon: <PersonOutlinedIcon />,
@@ -50,7 +51,7 @@ export default function ManagerDrawer () {
       dispatch(logout())
       navigate('/')
     } else {
-      navigate('/account')
+      navigate('/manager-setting')
     }
   }
   const handleClick = url => {

@@ -16,44 +16,37 @@ import {
   TextField
 } from '@mui/material'
 
-export const initialRowss = [
+export const initialRows = [
   {
     id: 1,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+    name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    description: 'Defender',
+    Position: 'Defender',
     TournamentName: 'tournamentA',
-    type: 'Good Performance',
-    date: '01/01/2024',
-
+    Status: 'Good Performance',
     jersey: 22
   },
   {
     id: 2,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
-
+    name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    description: 'Midfielder',
+    Position: 'Midfielder',
     TournamentName: randomTraderName(),
-    type: 'Injury',
-    date: '01/01/2024',
-
+    Status: 'Injury',
     jersey: 22
   },
   {
     id: 3,
-    name: 'FOOTBALL TEAM MANAGEMENT WEB APPLICATION /images/avatar/player.jpg',
+    name: randomTraderName(),
     avatar: '/images/avatar/player.jpg',
-    description: 'Midfielder',
+    Position: 'Midfielder',
     TournamentName: randomTraderName(),
-    type: 'Injury',
-    date: '01/01/2024',
-
+    Status: 'Injury',
     jersey: 22
   }
 ]
 
-export const columnss = [
+export const columns = [
   {
     field: 'id',
     headerName: 'No.',
@@ -63,38 +56,78 @@ export const columnss = [
     type: 'singleSelect'
   },
   {
-    field: 'name',
-    headerName: 'Title',
-    width: 180,
-    editable: true
+    field: 'user',
+    headerName: 'Name',
+    width: 280,
+    editable: false,
+    renderCell: params => {
+      return (
+        <div className='d-flex'>
+          <Avatar src={params.row.avatar} sx={{ margin: '5px 20px 5px 0' }} />
+          <span>{params.row.name}</span>
+        </div>
+      )
+    }
   },
   {
-    field: 'description',
-    headerName: 'Description',
-    width: 100,
-    editable: true
+    field: 'Position',
+    headerName: 'Position',
+    width: 150,
+    align: 'left',
+    headerAlign: 'left',
+    type: 'singleSelect',
+    valueOptions: ['Goal Keeper', 'Defender', 'Midfielder'],
+    editable: true,
+    valueFormatter: (value, row, func) => {
+      return func.valueOptions[value]
+    }
   },
   {
-    field: 'type',
-    headerName: 'Type',
-    width: 100,
-    editable: true
+    field: 'TournamentName',
+    headerName: 'TournamentName',
+    width: 120,
+    align: 'left',
+    headerAlign: 'left',
+    editable: true,
+    type: 'number'
+    // renderCell: params => {
+    //   return params.value + '%'
+    // }
   },
   {
-    field: 'date',
-    headerName: 'Date',
-    width: 100,
+    field: 'Status',
+    headerName: 'Status',
+    width: 150,
+    align: 'left',
+    headerAlign: 'left',
+    editable: true,
+    type: 'singleSelect',
+    valueOptions: ['Good Performance', 'Injury'],
+    renderCell: params => {
+      const value = params.value
+      if (value === 'Good Performance')
+        return <font color='green'>{value}</font>
+      else return <font color='red'>{value}</font>
+    }
+  },
+  {
+    field: 'jersey',
+    headerName: 'Jersey Number',
+    type: 'number',
+    align: 'left',
+    headerAlign: 'left',
+    width: 120,
     editable: true
   }
 ]
 
 export const contentMenu = [
-  { text: 'Team updates' },
-  { text: 'Admin updates' }
-  //   { text: 'Tournament B' }
+  { text: 'All Squad' },
+  { text: 'Tournament A' },
+  { text: 'Tournament B' }
 ]
 
-export function EditToolbarr (props) {
+export function EditToolbar (props) {
   const { setRows, setRowModesModel } = props
   const [searched, setSearched] = React.useState('')
   const dispatch = useDispatch()
@@ -104,7 +137,7 @@ export function EditToolbarr (props) {
 
   const requestSearch = e => {
     const searchedVal = e.target.value
-    const filteredRows = initialRowss.filter(row => {
+    const filteredRows = initialRows.filter(row => {
       setSearched(searchedVal)
       return row.name.toLowerCase().includes(searchedVal.toLowerCase())
     })
@@ -143,19 +176,19 @@ export function EditToolbarr (props) {
           onChange={requestSearch}
         />
       </Search>
-      {/* <button className='pull-btn' color='primary' onClick={handleOpen}>
+      <button className='pull-btn' color='primary' onClick={handleOpen}>
         <PersonAddAltOutlinedIcon />
-        &nbsp;&nbsp;Add Update
-      </button> */}
+        &nbsp;&nbsp;Edit Team
+      </button>
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
-          <DialogTitle>Edit Notification</DialogTitle>
-          <DialogContent>
+          <DialogTitle>Edit Team details</DialogTitle>
+          <DialogContent className='bg-[#061727]'>
             <TextField
               autoFocus
               margin='dense'
-              label='Title'
+              label='Name'
               type='text'
               fullWidth
               // value={initialRows.name}
@@ -165,7 +198,7 @@ export function EditToolbarr (props) {
             />
             <TextField
               margin='dense'
-              label='description'
+              label='Position'
               type='text'
               fullWidth
               // value={initialRows.pos}
@@ -175,7 +208,7 @@ export function EditToolbarr (props) {
             />
             <TextField
               margin='dense'
-              label='type'
+              label='status'
               type='text'
               fullWidth
               // value={initialRows.avatar}
@@ -185,17 +218,7 @@ export function EditToolbarr (props) {
             />
             <TextField
               margin='dense'
-              //             label='date'
-              type='date'
-              fullWidth
-              // value={initialRows.avatar}
-              // onChange={e =>
-              //   setinitialRows({ ...initialRows, avatar: e.target.value })
-              // }
-            />
-            <TextField
-              margin='dense'
-              label='Publish by'
+              label='Jersey Number'
               type='text'
               fullWidth
               // value={initialRows.avatar}

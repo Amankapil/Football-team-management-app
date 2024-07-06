@@ -11,7 +11,7 @@ import {
 function SquadPage () {
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-10'>
         <CustomTab borderShow={true} tabData={contentMenu} />
         <CustomEditTable
           customToolbar={EditToolbar}

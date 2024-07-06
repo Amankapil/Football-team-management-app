@@ -92,7 +92,7 @@ export const columns = [
   {
     field: 'teams',
     headerName: 'Teams',
-    width: 150,
+    width: 250,
     editable: false
     //     renderCell: params => {
     //       //       const value = params.value
