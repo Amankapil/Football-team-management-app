@@ -36,7 +36,7 @@ const Dashboard = () => {
         className={
           open
             ? 'tablej max-w-[98rem] mxauto mt-40 w-[100%]  !h40 tabldash ml-[20%] '
-            : ' tablej max-w-[110rem] mxauto mt-40 w-[100%]  !h40 tabldash  ml-20'
+            : ' tablej max-w-[110rem] mxauto mt-40 w-[100%]  !h40 tabldash  ml-32'
         }
       >
         <div className='main-head--logo d-flex align-center j-start bg-[#061727] w-[100%] p-4'>
@@ -61,7 +61,7 @@ const Dashboard = () => {
         className={
           open
             ? 'flex gap-10 mx-auto justify-between ml-[20%] items-start max-w7xl w-[78%] mt-0'
-            : ' flex gap-10 mx-auto justify-between  items-start max-w7xl w-[87%] mt-0 ml-20'
+            : ' flex gap-10 mx-auto justify-between  items-start max-w7xl w-[87%] mt-0 ml-32'
         }
       >
         <div className='main-bo=dy w-full'>

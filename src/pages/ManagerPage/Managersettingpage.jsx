@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -22,6 +22,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import CloseIcon from '@mui/icons-material/Close'
+import { Avatar } from '@mui/material'
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor='photo-upload' className='custom-file-upload fas'>
@@ -40,6 +41,17 @@ const Managersettingpage = () => {
     password: '',
     active: 'edit'
   })
+
+  const defaultLogoUrl = 'https://your-default-logo-url.com/logo.png'
+  const [logoUrl, setLogoUrl] = useState(defaultLogoUrl)
+
+  const handleImageChange = event => {
+    const file = event.target.files[0]
+    if (file) {
+      const imageUrl = URL.createObjectURL(file)
+      setLogoUrl(imageUrl)
+    }
+  }
   return (
     <>
       <DialogContent dividers sx={{ backgroundColo: '5d4', border: 'none' }}>
@@ -50,9 +62,39 @@ const Managersettingpage = () => {
             </Typography>
             <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
               <OutlinedInput
+                id='outlined-adornment-logo'
+                type='file'
+                onChange={handleImageChange}
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <Avatar
+                      src={logoUrl}
+                      alt='Logo'
+                      sx={{ width: 24, height: 24 }}
+                    />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      aria-label='change logo'
+                      component='label'
+                      htmlFor='outlined-adornment-logo'
+                      edge='end'
+                    >
+                      upload profile
+                    </IconButton>
+                  </InputAdornment>
+                }
+                placeholder='Change logo'
+              />
+            </FormControl>
+
+            <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
+              <OutlinedInput
                 id='outlined-adornment-email'
                 type='text'
-                placeholder='Change User name'
+                placeholder='Enter Your Name'
                 startAdornment={
                   <InputAdornment position='start'>
                     <EmailOutlinedIcon />
@@ -66,7 +108,7 @@ const Managersettingpage = () => {
               <OutlinedInput
                 id='outlined-adornment-password'
                 type='password'
-                placeholder='Change Password'
+                placeholder='New Password'
                 //                 onChange={handlePassword}
                 //                 value={password}
                 startAdornment={
@@ -80,6 +122,28 @@ const Managersettingpage = () => {
                       aria-label='toggle password visibility'
                       //                       onClick={handleClickShowPassword}
                       //                       onMouseDown={handleMouseDownPassword}
+                      edge='end'
+                    >
+                      {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
+              <OutlinedInput
+                id='outlined-adornment-password'
+                type='password'
+                placeholder='Re-enter New Password'
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <HttpsOutlinedIcon />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      aria-label='toggle password visibility'
                       edge='end'
                     >
                       {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}

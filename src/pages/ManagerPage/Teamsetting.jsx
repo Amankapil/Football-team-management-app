@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -22,7 +22,8 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import CloseIcon from '@mui/icons-material/Close'
-import { LogoDev } from '@mui/icons-material'
+import { ContactEmergencyOutlined, LogoDev } from '@mui/icons-material'
+import { Avatar } from '@mui/material'
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor='photo-upload' className='custom-file-upload fas'>
@@ -41,6 +42,16 @@ const Teamsetting = () => {
     password: '',
     active: 'edit'
   })
+  const defaultLogoUrl = 'https://your-default-logo-url.com/logo.png'
+  const [logoUrl, setLogoUrl] = useState(defaultLogoUrl)
+
+  const handleImageChange = event => {
+    const file = event.target.files[0]
+    if (file) {
+      const imageUrl = URL.createObjectURL(file)
+      setLogoUrl(imageUrl)
+    }
+  }
   return (
     <>
       <DialogContent dividers sx={{ backgroundColo: '5d4', border: 'none' }}>
@@ -49,6 +60,36 @@ const Teamsetting = () => {
             <Typography variant='h4' gutterBottom>
               Team Detail
             </Typography>
+            <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
+              <OutlinedInput
+                id='outlined-adornment-logo'
+                type='file'
+                onChange={handleImageChange}
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <Avatar
+                      src={logoUrl}
+                      alt='Logo'
+                      sx={{ width: 24, height: 24 }}
+                    />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      aria-label='change logo'
+                      component='label'
+                      htmlFor='outlined-adornment-logo'
+                      edge='end'
+                    >
+                      Change Logo
+                    </IconButton>
+                  </InputAdornment>
+                }
+                placeholder='Change logo'
+              />
+            </FormControl>
+
             <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
               <OutlinedInput
                 id='outlined-adornment-email'
@@ -66,8 +107,6 @@ const Teamsetting = () => {
                 id='outlined-adornment-password'
                 type='password'
                 placeholder='Change Player details'
-                //                 onChange={handlePassword}
-                //                 value={password}
                 startAdornment={
                   <InputAdornment position='start'>
                     <HttpsOutlinedIcon />
@@ -77,12 +116,8 @@ const Teamsetting = () => {
                   <InputAdornment position='end'>
                     <IconButton
                       aria-label='toggle password visibility'
-                      //                       onClick={handleClickShowPassword}
-                      //                       onMouseDown={handleMouseDownPassword}
                       edge='end'
-                    >
-                      {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
-                    </IconButton>
+                    ></IconButton>
                   </InputAdornment>
                 }
               />
@@ -90,29 +125,44 @@ const Teamsetting = () => {
             <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
               <OutlinedInput
                 id='outlined-adornment-password'
-                type='file'
-                placeholder='Change logo'
-                //                 onChange={handlePassword}
-                //                 value={password}
+                type='password'
+                placeholder='Change Email'
                 startAdornment={
                   <InputAdornment position='start'>
-                    <LogoDev />
+                    <EmailOutlinedIcon />
                   </InputAdornment>
                 }
                 endAdornment={
                   <InputAdornment position='end'>
                     <IconButton
                       aria-label='toggle password visibility'
-                      //                       onClick={handleClickShowPassword}
-                      //                       onMouseDown={handleMouseDownPassword}
                       edge='end'
-                    >
-                      {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
-                    </IconButton>
+                    ></IconButton>
                   </InputAdornment>
                 }
               />
             </FormControl>
+            <FormControl sx={{ m: 1 }} fullWidth variant='outlined'>
+              <OutlinedInput
+                id='outlined-adornment-password'
+                type='password'
+                placeholder='Change Contact'
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <ContactEmergencyOutlined />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      aria-label='toggle password visibility'
+                      edge='end'
+                    ></IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+
             <Stack
               direction={'row'}
               alignItems={'center'}
@@ -123,7 +173,7 @@ const Teamsetting = () => {
             <button
               //               onClick={handleLogin}
               className='pull-btn text-center text-dark'
-              style={{ width: '100%', marginTop: '20px' }}
+              style={{ width: '20%', marginTop: '20px' }}
             >
               save
             </button>
