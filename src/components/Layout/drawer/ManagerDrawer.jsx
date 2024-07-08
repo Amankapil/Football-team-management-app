@@ -51,7 +51,7 @@ export default function ManagerDrawer () {
       dispatch(logout())
       navigate('/')
     } else {
-      navigate('/setting')
+      navigate('/manager-setting')
     }
   }
   const handleClick = url => {

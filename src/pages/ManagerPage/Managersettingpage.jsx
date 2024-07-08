@@ -162,7 +162,7 @@ const Managersettingpage = () => {
             <button
               //               onClick={handleLogin}
               className='pull-btn text-center text-dark'
-              style={{ width: '100%', marginTop: '20px' }}
+              style={{ width: '20%', marginTop: '20px' }}
             >
               save
             </button>
