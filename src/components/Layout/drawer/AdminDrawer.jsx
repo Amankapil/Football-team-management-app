@@ -39,6 +39,11 @@ export default function AdminDrawer () {
       url: '/admin/teammanager'
     },
     {
+      text: 'Live score',
+      icon: <PermIdentityOutlinedIcon />,
+      url: '/live-score'
+    },
+    {
       text: 'Player Approval',
       icon: <DoneAllOutlinedIcon />,
       notification: <NotificationsActiveIcon />,

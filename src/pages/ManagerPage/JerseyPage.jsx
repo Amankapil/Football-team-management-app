@@ -38,7 +38,7 @@ function JerseyPage () {
     // setCurrentRow({ id: '', name: '', pos: '', avatar: '' })
   }
   return (
-    <div className='d-flex j-start jersey-lists max-w-7xl mx-auto mt-32 pl-20'>
+    <div className='d-flex j-start jersey-lists max-w-7xl mx-auto mt-32 pl-20 max-md:p-4'>
       {jerseyList.map(item => (
         <JerseyCard
           key={item.title}

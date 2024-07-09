@@ -12,7 +12,11 @@ function SquadPage () {
   return (
     <>
       <div className='max-w-7xl mx-auto mt-40 pl-10'>
-        <CustomTab borderShow={true} tabData={contentMenu} />
+        <CustomTab
+          className='!bg-[#061727]'
+          borderShow={true}
+          tabData={contentMenu}
+        />
         <CustomEditTable
           customToolbar={EditToolbar}
           columns={columns}

@@ -29,6 +29,7 @@ import Notimanage from '../pages/ManagerPage/Notimanage'
 import Tournaments from '../pages/ManagerPage/Tournaments'
 import Dashboard from '../pages/ManagerPage/Dashboard'
 import Setttingpage from '../pages/ManagerPage/Setttingpage'
+import Livescore from '../pages/AdminPage/Livescore'
 // import TeamPage from "../pages/UserPage/teams";
 
 // import AuthRoutes from "./AuthRoutes.jsx";
@@ -66,6 +67,7 @@ function MainRoutes () {
             <Routes>
               <Route exact path='/' element={<UserPage></UserPage>}></Route>
               <Route exact path='/addteam' element={<Createteam />}></Route>
+              <Route exact path='/live-score' element={<Livescore />}></Route>
               <Route exact path='/dashboard' element={<Dashboard />}></Route>
               <Route exact path='/squad' element={<SquadPage />}></Route>
               <Route

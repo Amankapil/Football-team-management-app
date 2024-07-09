@@ -25,13 +25,7 @@ import Teamsetting from './Teamsetting'
 
 function Setttingpage () {
   const [select, setSelect] = React.useState(0)
-  const [renderPage, setRenderPage] = React.useState(
-    <CustomEditTable
-      customToolbar={EditToolbar}
-      columns={columns}
-      data={initialRows}
-    />
-  )
+  const [renderPage, setRenderPage] = React.useState(<Teamsetting />)
   //   const open = useSelector(state => state.drawer.open)
   //   const teamInfo = useSelector(state => state.sidebar)
   const menuLists = ['Team setting', 'Manager setting']
@@ -57,7 +51,7 @@ function Setttingpage () {
   }
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
         <Box sx={{ width: 'auto' }}>
           <Box>
             <Tabs

@@ -56,7 +56,7 @@ const Teamsetting = () => {
     <>
       <DialogContent dividers sx={{ backgroundColo: '5d4', border: 'none' }}>
         <div className='d-flex align-center sign-form'>
-          <Box sx={{ marginLeft: '50px' }}>
+          <Box className='ml-[50px] max-md:ml-0'>
             <Typography variant='h4' gutterBottom>
               Team Detail
             </Typography>
@@ -172,8 +172,8 @@ const Teamsetting = () => {
             </Stack>
             <button
               //               onClick={handleLogin}
-              className='pull-btn text-center text-dark'
-              style={{ width: '20%', marginTop: '20px' }}
+              className='pull-btn text-center text-dark w-[20%] max-md:w-full'
+              style={{ marginTop: '20px' }}
             >
               save
             </button>

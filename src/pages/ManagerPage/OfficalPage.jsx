@@ -179,7 +179,7 @@ const OfficalPage = () => {
 
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
         {/* <DataGrid
           rows={rows}
           columns={columns}

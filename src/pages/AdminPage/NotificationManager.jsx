@@ -66,7 +66,7 @@ function NotificationManager () {
   }
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
         {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
 
         {/* <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>

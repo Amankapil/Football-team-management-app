@@ -71,7 +71,7 @@ function MatchPage () {
     // </>
 
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
         <CustomTab borderShow={true} tabData={contentMenu} />
         <CustomEditTable
           customToolbar={EditToolbar}

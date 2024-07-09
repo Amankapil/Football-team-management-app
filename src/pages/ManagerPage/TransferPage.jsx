@@ -6,7 +6,7 @@ import { EditToolbar } from './datas/tranferData'
 function TransferPage () {
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
         {/* <CustomEditTable columns={columns} data={initialRows} /> */}
 
         <CustomEditTable

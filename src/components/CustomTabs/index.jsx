@@ -14,6 +14,7 @@ function CustomTabPanel (props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
+      className='bg-[#061727]'
       {...other}
     >
       {value === index && (
@@ -61,6 +62,7 @@ export default function CustomTabs ({ tabData, borderShow, tabWidth, index }) {
           value={value}
           onChange={handleChange}
           aria-label='basic tabs example'
+          className='bg-[#061727]'
         >
           {tabData.map((item, index) => (
             <Tab

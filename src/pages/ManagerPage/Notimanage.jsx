@@ -66,7 +66,7 @@ function Notimanage () {
   }
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
         {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
 
         {/* <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>
@@ -101,13 +101,14 @@ function Notimanage () {
               // value={value}
               // onChange={handleChange}
               aria-label='basic tabs example'
+              className='bg-[#061727]'
             >
               {menuLists.map((item, index) => (
                 <Tab
                   key={index}
                   // icon={item}
                   className={
-                    ('nav-link', index == select && 'active text-yellow-200')
+                    ('nav-link', index == select && '!active !text-yellow-200')
                   }
                   iconPosition='start'
                   label={item}
@@ -118,7 +119,7 @@ function Notimanage () {
           </Box>
         </Box>
 
-        <div className='main-body'>{renderPage}</div>
+        <div className='man-body'>{renderPage}</div>
       </div>
     </>
   )
