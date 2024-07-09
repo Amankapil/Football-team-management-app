@@ -36,7 +36,7 @@ export default function AdminDrawer () {
     {
       text: 'Team Manager',
       icon: <SportsSoccerOutlinedIcon />,
-      url: '/admin/teammanager'
+      url: '/teammanager'
     },
     {
       text: 'Live score',

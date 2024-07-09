@@ -179,7 +179,7 @@ const OfficalPage = () => {
 
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
+      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-20  max-sm:p-5 '>
         {/* <DataGrid
           rows={rows}
           columns={columns}
@@ -235,7 +235,7 @@ const OfficalPage = () => {
           </DialogActions>
         </Dialog> */}
 
-        <div className='max-w-7xl mx-auto mt-40'>
+        <div className='max-w-7xl mx-auto mt-40 max-md:mt-0'>
           {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
           <CustomEditTable
             customToolbar={EditToolbar}

@@ -35,8 +35,8 @@ const Dashboard = () => {
       <div
         className={
           open
-            ? 'tablej max-w-[98rem] mxauto mt-40 w-[100%]  !h40 tabldash ml-[20%] transition-all'
-            : ' tablej max-w-[110rem] mxauto mt-40 w-[100%]  !h40 tabldash  ml-32 transition-all'
+            ? 'tablej max-w-[98rem] mxauto mt-40 w-[100%]  !h40 tabldash ml-[20%] transition-all  max-md:m-4  max-md:mt-40 max-md:p-20 max-sm:p-5 '
+            : ' tablej max-w-[110rem] mxauto mt-40 w-[100%]  !h40 tabldash  ml-32 transition-all  max-md:m-4 max-md:mt-40 max-md:p-20  max-sm:p-5'
         }
       >
         <div className='main-head--logo d-flex align-center j-start bg-[#061727] w-[100%] p-4'>
@@ -60,8 +60,8 @@ const Dashboard = () => {
       <div
         className={
           open
-            ? 'flex gap-10 mx-auto justify-between ml-[20%] items-start max-w7xl w-[78%] mt-0 transition-all'
-            : ' flex gap-10 mx-auto justify-between  items-start max-w7xl w-[87%] mt-0 ml-32 transition-all'
+            ? 'flex gap-10 mx-auto justify-between ml-[20%] items-start max-w7xl w-[78%] mt-0 transition-all max-md:m-4 max-md:w-full max-md:p-20 max-md:flex-col max-sm:p-5'
+            : ' flex gap-10 mx-auto justify-between  items-start max-w7xl w-[87%] mt-0 ml-32 transition-all  max-md:m-4 max-md:w-full max-md:p-20 max-md:flex-col max-sm:p-5'
         }
       >
         <div className='main-bo=dy w-full'>
@@ -190,7 +190,7 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <div className='main-boy wfull team-chart-lists'>
+        <div className='mainboy wfull team-chrt-lists flex flex-col  max-md:m-4'>
           <List
             subheader='Winning Percentage'
             sx={{

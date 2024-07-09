@@ -65,7 +65,7 @@ const Livescore = () => {
   }
 
   return (
-    <div className='!max-w-7xl !mx-auto mt-40'>
+    <div className='!max-w-6xl !mx-auto mt-40'>
       <h1>Live Football Score Update</h1>
 
       <div className='team'>

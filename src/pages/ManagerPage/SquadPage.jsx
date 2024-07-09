@@ -11,7 +11,7 @@ import {
 function SquadPage () {
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-10'>
+      <div className='max-w-7xl mx-auto mt-40 pl-10 max-md:p-20 max-sm:p-5'>
         <CustomTab
           className='!bg-[#061727]'
           borderShow={true}
