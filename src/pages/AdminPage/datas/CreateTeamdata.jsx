@@ -104,7 +104,7 @@ export const columns = [
     align: 'left',
     headerAlign: 'left',
     editable: true,
-    type: 'number'
+    type: 'text'
     // renderCell: params => {
     //   return params.value + '%'
     // }
@@ -116,7 +116,7 @@ export const columns = [
     align: 'left',
     headerAlign: 'left',
     editable: true,
-    type: 'number'
+    type: 'text'
     // renderCell: params => {
     //   return params.value + '%'
     // }
