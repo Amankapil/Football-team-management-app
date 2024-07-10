@@ -12,19 +12,24 @@ import {
   EditToolbar,
   initialRows
 } from '../AdminPage/datas/CreateTeamdata'
+import { Main } from '../../styled'
+import { useSelector } from 'react-redux'
 
 const Createteam = () => {
+  const open = useSelector(state => state.drawer.open)
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4  max-sm:p-5'>
-        {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
-        <CustomEditTable
-          customToolbar={EditToolbar}
-          columns={columns}
-          data={initialRows}
-          showActions={true}
-        />
-      </div>
+      <Main open={open} className='mt-40'>
+        <div className='max-w-6xl mx-auto mt-10 ml28 max-md:m-0 max-md:p-4'>
+          {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
+          <CustomEditTable
+            customToolbar={EditToolbar}
+            columns={columns}
+            data={initialRows}
+            showActions={true}
+          />
+        </div>
+      </Main>
     </>
   )
 }

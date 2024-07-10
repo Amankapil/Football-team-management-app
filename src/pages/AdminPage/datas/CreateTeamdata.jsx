@@ -185,7 +185,7 @@ export function EditToolbar (props) {
 
       <Dialog open={open} onClose={handleClose}>
         <div className='bg-[#061727]'>
-          <DialogTitle>Add new player</DialogTitle>
+          <DialogTitle>Add new Team</DialogTitle>
           <DialogContent className='bg-[#061727]'>
             <TextField
               autoFocus
@@ -212,6 +212,16 @@ export function EditToolbar (props) {
               margin='dense'
               label='contact'
               type='email'
+              fullWidth
+              // value={initialRows.avatar}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, avatar: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='team manager'
+              type='text'
               fullWidth
               // value={initialRows.avatar}
               // onChange={e =>

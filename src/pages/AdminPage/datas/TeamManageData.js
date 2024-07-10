@@ -224,8 +224,19 @@ export function EditToolbar (props) {
             <TextField
               autoFocus
               margin='dense'
-              label='UserName'
+              label='Name'
               type='text'
+              fullWidth
+              // value={initialRows.name}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, name: e.target.value })
+              // }
+            />
+            <TextField
+              autoFocus
+              margin='dense'
+              label='Email'
+              type='email'
               fullWidth
               // value={initialRows.name}
               // onChange={e =>
@@ -244,7 +255,17 @@ export function EditToolbar (props) {
             />
             <TextField
               margin='dense'
-              label='Email'
+              label='Contact No.'
+              type='number'
+              fullWidth
+              // value={initialRows.pos}
+              // onChange={e =>
+              //   setinitialRows({ ...initialRows, pos: e.target.value })
+              // }
+            />
+            <TextField
+              margin='dense'
+              label='team'
               type='text'
               fullWidth
               // value={initialRows.avatar}

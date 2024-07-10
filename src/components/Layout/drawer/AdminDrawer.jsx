@@ -50,9 +50,14 @@ export default function AdminDrawer () {
       url: '/notification'
     },
     {
-      text: 'Updates to public',
+      text: 'Official Updates',
       icon: <GroupOutlinedIcon />,
       url: '/notificationManager'
+    },
+    {
+      text: 'News Updates',
+      icon: <GroupOutlinedIcon />,
+      url: '/news'
     }
     // { text: 'My Account', icon: <PermIdentityOutlinedIcon />, url: '/account' }
   ]

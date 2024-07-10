@@ -21,6 +21,8 @@ import {
   EditToolbar,
   initialRows
 } from './datas/officalData'
+import { Main } from '../../styled'
+import { useSelector } from 'react-redux'
 // import { Search, SearchIconWrapper, StyledInputBase } from '../../../styled'
 
 // const initialRows = [
@@ -147,7 +149,7 @@ import {
 const OfficalPage = () => {
   const [rows, setRows] = useState(initialRows)
   const [rowModesModel, setRowModesModel] = useState({})
-  const [open, setOpen] = useState(false)
+  const [openw, setOpen] = useState(false)
   const [currentRow, setCurrentRow] = useState({
     id: '',
     name: '',
@@ -177,10 +179,13 @@ const OfficalPage = () => {
     handleOpen(row)
   }
 
+  const open = useSelector(state => state.drawer.open)
+
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-20  max-sm:p-5 '>
-        {/* <DataGrid
+      <Main open={open}>
+        <div className='max-w-7xl mx-auto mt-40 p20 max-md:p-20  max-sm:p-5 '>
+          {/* <DataGrid
           rows={rows}
           columns={columns}
           components={{
@@ -235,15 +240,16 @@ const OfficalPage = () => {
           </DialogActions>
         </Dialog> */}
 
-        <div className='max-w-7xl mx-auto mt-40 max-md:mt-0'>
-          {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
-          <CustomEditTable
-            customToolbar={EditToolbar}
-            columns={columns}
-            data={initialRows}
-          />
+          <div className='max-w-7xl mx-auto mt-40 max-md:mt-0'>
+            {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
+            <CustomEditTable
+              customToolbar={EditToolbar}
+              columns={columns}
+              data={initialRows}
+            />
+          </div>
         </div>
-      </div>
+      </Main>
     </>
   )
 }

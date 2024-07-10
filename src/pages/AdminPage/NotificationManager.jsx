@@ -19,6 +19,8 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import { Main } from '../../styled'
+import { useSelector } from 'react-redux'
 
 function NotificationManager () {
   const [select, setSelect] = React.useState(0)
@@ -64,12 +66,15 @@ function NotificationManager () {
         break
     }
   }
+  const open = useSelector(state => state.drawer.open)
+
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
-        {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
+      <Main open={open}>
+        <div className='max-w-7xl mx-auto mt-40 pl20 max-md:p-4'>
+          {/* <CustomTab borderShow={true} tabData={contentMenu} /> */}
 
-        {/* <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>
+          {/* <ul className='na mainnavbar flex gap-4 py-6  cursor-pointer'>
           {menuLists.map((item, index) => (
             <li className='nav-item !text-[16px]' key={index}>
               <a
@@ -84,25 +89,25 @@ function NotificationManager () {
           ))}
         </ul> */}
 
-        <Box sx={{ width: 'auto' }}>
-          <Box>
-            <Tabs
-              // indicatorColor={
-              //   borderShow === false || !borderShow ? '' : 'primary'
-              // }
-              sx={{
-                '& .Mui-selected': {
-                  // backgroundColor: !borderShow && '#0D1B28'
-                },
-                '& .MuiTab-root': {
-                  minHeight: '61px'
-                }
-              }}
-              // value={value}
-              // onChange={handleChange}
-              aria-label='basic tabs example'
-            >
-              {/* {menuLists.map((item, index) => (
+          <Box sx={{ width: 'auto' }}>
+            <Box>
+              <Tabs
+                // indicatorColor={
+                //   borderShow === false || !borderShow ? '' : 'primary'
+                // }
+                sx={{
+                  '& .Mui-selected': {
+                    // backgroundColor: !borderShow && '#0D1B28'
+                  },
+                  '& .MuiTab-root': {
+                    minHeight: '61px'
+                  }
+                }}
+                // value={value}
+                // onChange={handleChange}
+                aria-label='basic tabs example'
+              >
+                {/* {menuLists.map((item, index) => (
                 <Tab
                   key={index}
                   // icon={item}
@@ -114,12 +119,13 @@ function NotificationManager () {
                   onClick={() => handleMenu(index, item)}
                 ></Tab>
               ))} */}
-            </Tabs>
+              </Tabs>
+            </Box>
           </Box>
-        </Box>
 
-        <div className='main-bdy'>{renderPage}</div>
-      </div>
+          <div className='main-bdy'>{renderPage}</div>
+        </div>
+      </Main>
     </>
   )
 }

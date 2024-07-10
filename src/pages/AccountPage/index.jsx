@@ -22,6 +22,9 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Managersettingpage from '../ManagerPage/Managersettingpage'
 import Teamsetting from '../ManagerPage/Teamsetting'
+import Adminsetting from './Adminsetting'
+import { Main } from '../../styled'
+import { useSelector } from 'react-redux'
 // import Managersettingpage from './Managersettingpage'
 // import Teamsetting from './Teamsetting'
 
@@ -40,7 +43,7 @@ function Setttingpage () {
     setSelect(index)
     switch (index) {
       case 0:
-        setRenderPage(<Teamsetting />)
+        setRenderPage(<Adminsetting />)
         break
       case 1:
         setRenderPage(<Managersettingpage />)
@@ -51,48 +54,52 @@ function Setttingpage () {
         break
     }
   }
+  const open = useSelector(state => state.drawer.open)
+
   return (
     <>
-      <div className='max-w-7xl mx-auto mt-40 pl-20 max-md:p-4'>
-        <Box sx={{ width: 'auto' }}>
-          <Box>
-            <Tabs
-              // indicatorColor={
-              //   borderShow === false || !borderShow ? '' : 'primary'
-              // }
-              sx={{
-                '& .Mui-selected': {
-                  // backgroundColor: !borderShow && '#0D1B28'
-                },
-                '& .MuiTab-root': {
-                  minHeight: '61px'
-                }
-              }}
-              // value={value}
-              // onChange={handleChange}
-              aria-label='basic tabs example'
-              className='bg-[#061727]'
-            >
-              {menuLists.map((item, index) => (
-                <Tab
-                  key={index}
-                  // icon={item}
-                  className={
-                    ('nav-link ',
-                    index == select &&
-                      '!active !text-yellow-200 !border-b-2 !border-amber-200')
+      <Main open={open}>
+        <div className='max-w-7xl mx-auto mt-40 20 max-md:p-4'>
+          <Box sx={{ width: 'auto' }}>
+            <Box>
+              <Tabs
+                // indicatorColor={
+                //   borderShow === false || !borderShow ? '' : 'primary'
+                // }
+                sx={{
+                  '& .Mui-selected': {
+                    // backgroundColor: !borderShow && '#0D1B28'
+                  },
+                  '& .MuiTab-root': {
+                    minHeight: '61px'
                   }
-                  iconPosition='start'
-                  label={item}
-                  onClick={() => handleMenu(index, item)}
-                ></Tab>
-              ))}
-            </Tabs>
+                }}
+                // value={value}
+                // onChange={handleChange}
+                aria-label='basic tabs example'
+                className='bg-[#061727]'
+              >
+                {menuLists.map((item, index) => (
+                  <Tab
+                    key={index}
+                    // icon={item}
+                    className={
+                      ('nav-link ',
+                      index == select &&
+                        '!active !text-yellow-200 !border-b-2 !border-amber-200')
+                    }
+                    iconPosition='start'
+                    label={item}
+                    onClick={() => handleMenu(index, item)}
+                  ></Tab>
+                ))}
+              </Tabs>
+            </Box>
           </Box>
-        </Box>
 
-        <div className='mai-body'>{renderPage}</div>
-      </div>
+          <div className='mai-body'>{renderPage}</div>
+        </div>
+      </Main>
     </>
   )
 }

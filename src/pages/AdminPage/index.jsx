@@ -16,7 +16,6 @@ function AdminPage () {
   )
   const { key } = useParams()
   const dispatch = useDispatch()
-  const open = useSelector(state => state.drawer.open)
   const breadcrumbs = useSelector(state => state.breadcrumbs)
 
   React.useEffect(() => {
@@ -39,6 +38,8 @@ function AdminPage () {
         break
     }
   }, [key])
+
+  const open = useSelector(state => state.drawer.open)
 
   return (
     <Main open={open}>
