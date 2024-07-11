@@ -82,45 +82,6 @@ export default function UserDrawer () {
 
   return (
     <>
-      <ListItemButton
-        sx={{
-          margin: '1px 5px',
-          padding: 0,
-          '& .MuiListItemIcon-root': { minWidth: 35 }
-        }}
-      >
-        <ListItemIcon>
-          <SportsSoccerOutlinedIcon sx={{ color: 'var(--main-color)' }} />
-        </ListItemIcon>
-        <ListItemText primary='COMPETITIONS' />
-        <ArrowForwardIosIcon sx={{ color: 'grey' }} fontSize='small' />
-      </ListItemButton>
-      <Divider sx={{ borderWidth: '1px' }} />
-
-      {/* This part is competition menu */}
-
-      <List>
-        {competitionMenus.map((item, index) => (
-          <ListItem
-            disablePadding
-            key={index}
-            onClick={() => handleSelect(item, index)}
-          >
-            <ListItemButton
-              sx={{
-                margin: '1px 5px',
-                '& .MuiListItemIcon-root': { minWidth: 35 }
-              }}
-            >
-              <ListItemIcon>
-                <img src={item.icon} width={20} />
-              </ListItemIcon>
-              <ListItemText primary={item.text} secondary={item.subtext} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-
       {/* This part is team nmenu title */}
 
       <ListItemButton
@@ -160,24 +121,44 @@ export default function UserDrawer () {
             </ListItemButton>
           </ListItem>
         ))}
-        <ListItem disablePadding>
-          <Link to='/addteam'>
+      </List>
+      <ListItemButton
+        sx={{
+          margin: '1px 5px',
+          padding: 0,
+          '& .MuiListItemIcon-root': { minWidth: 35 }
+        }}
+      >
+        <ListItemIcon>
+          <SportsSoccerOutlinedIcon sx={{ color: 'var(--main-color)' }} />
+        </ListItemIcon>
+        <ListItemText primary='COMPETITIONS' />
+        <ArrowForwardIosIcon sx={{ color: 'grey' }} fontSize='small' />
+      </ListItemButton>
+      <Divider sx={{ borderWidth: '1px' }} />
+
+      {/* This part is competition menu */}
+
+      <List>
+        {competitionMenus.map((item, index) => (
+          <ListItem
+            disablePadding
+            key={index}
+            onClick={() => handleSelect(item, index)}
+          >
             <ListItemButton
               sx={{
                 margin: '1px 5px',
                 '& .MuiListItemIcon-root': { minWidth: 35 }
               }}
             >
-              <ListItemIcon style={{ color: 'var(--main-color)' }}>
-                <AddOutlinedIcon />
+              <ListItemIcon>
+                <img src={item.icon} width={20} />
               </ListItemIcon>
-              <ListItemText
-                primary={'Add new team'}
-                sx={{ '& *': { color: 'var(--main-color) !important' } }}
-              />
+              <ListItemText primary={item.text} secondary={item.subtext} />
             </ListItemButton>
-          </Link>
-        </ListItem>
+          </ListItem>
+        ))}
       </List>
 
       {/* This part is regions menu title */}

@@ -79,7 +79,7 @@ function UserPage () {
                 </div>
               </div>
             </div>
-            <ul className='nav main-navbar'>
+            <ul className='nav main-navbar flex gap-8'>
               {menuLists.map((item, index) => (
                 <li className='nav-item' key={index}>
                   <a
@@ -95,13 +95,14 @@ function UserPage () {
           <div className='main-body'>{renderPage}</div>
         </div>
         {teamInfo.type == 'team' && (
-          <div className='main-body team-chart-lists'>
+          <div className='main-body team-chart-lists '>
             <List
               subheader='Winning Percentage'
               sx={{
                 backgroundColor: '#041421',
                 borderRadius: '8px',
-                margin: '20px 0'
+                margin: '20px 0',
+                padding: '10px'
               }}
             >
               <CustomGauge value={75} />
@@ -111,6 +112,7 @@ function UserPage () {
               sx={{
                 backgroundColor: '#041421',
                 borderRadius: '8px',
+                padding: '10px',
                 margin: '20px 0'
               }}
             >
@@ -121,7 +123,8 @@ function UserPage () {
               sx={{
                 backgroundColor: '#041421',
                 borderRadius: '8px',
-                margin: '20px 0'
+                margin: '20px 0',
+                padding: '10px'
               }}
             >
               <CustomMultiGauge />
