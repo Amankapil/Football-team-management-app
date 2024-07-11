@@ -306,8 +306,8 @@ export default function PersistentDrawerRight () {
           {!authentification && role == 'common' && (
             <>
               {/* <div className='fixed left-0 '> */}
-              {/* <UserDrawer /> */}
-              <AdminDrawer />
+              <UserDrawer />
+              {/* <AdminDrawer /> */}
               {/* <ManagerDrawer /> */}
               {/* </div> */}
             </>
