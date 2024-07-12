@@ -15,6 +15,7 @@ import CustomGauge from '../../components/CustomGauge'
 import CustomMultiGauge from '../../components/CustomMultiGauge'
 import CustomBarChart from '../../components/CustomBarChart'
 import AdminDrawer from '../../components/Layout/drawer/AdminDrawer'
+import { useNavigate } from 'react-router-dom'
 function UserPage () {
   const [select, setSelect] = React.useState(0)
   const [renderPage, setRenderPage] = React.useState(<Overview />)
@@ -29,7 +30,10 @@ function UserPage () {
     handleMenu(select)
   }, [teamInfo])
 
+  const navigate = useNavigate()
+
   const handleMenu = (index, text) => {
+    navigate('/')
     setSelect(index)
     switch (index) {
       case 0:

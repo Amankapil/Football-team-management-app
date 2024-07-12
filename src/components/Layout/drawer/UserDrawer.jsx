@@ -13,12 +13,14 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined'
 import { selectSidebarItem } from '../../../redux/actions/sidebar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function UserDrawer () {
   const dispatch = useDispatch()
   const [open, setOpen] = React.useState(true)
+  const navigate = useNavigate()
   const handleSelect = function (data) {
+    navigate('/')
     dispatch(selectSidebarItem(data))
   }
   const competitionMenus = [

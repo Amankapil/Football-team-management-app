@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Box from '@mui/material/Box'
@@ -50,7 +50,7 @@ export default function PersistentDrawerRight () {
   const open = useSelector(state => state.drawer.open)
 
   const topMenu = [
-    { text: 'LIVE SCORES', icon: <ScoreboardOutlinedIcon />, url: '/' },
+    { text: 'TODAY SCORES', icon: <ScoreboardOutlinedIcon />, url: '/' },
     {
       text: 'FAVORITES',
       icon: <CollectionsBookmarkOutlinedIcon />,
@@ -95,6 +95,8 @@ export default function PersistentDrawerRight () {
   //   }
   // }, [role])
 
+  const navigate = useNavigate()
+
   return (
     <>
       <Box className='buaman' sx={{ display: 'flex' }}>
@@ -123,7 +125,16 @@ export default function PersistentDrawerRight () {
             </>
 
             {/* This part is top menu */}
+            <button
+              onClick={() => {
+                navigate('/live')
+              }}
+              className='text-orange-500'
+            >
+              LIVE
+            </button>
             <Box sx={{ flex: 1 }} />
+
             {!authentification && role !== 'manager' && (
               <CustomTabs
                 sx={{ width: 'auto !important' }}

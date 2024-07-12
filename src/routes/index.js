@@ -30,6 +30,7 @@ import Tournaments from '../pages/ManagerPage/Tournaments'
 import Dashboard from '../pages/ManagerPage/Dashboard'
 import Setttingpage from '../pages/ManagerPage/Setttingpage'
 import Livescore from '../pages/AdminPage/Livescore'
+import Matchlist from '../pages/UserPage/Matchlist'
 // import TeamPage from "../pages/UserPage/teams";
 
 // import AuthRoutes from "./AuthRoutes.jsx";
@@ -87,6 +88,7 @@ function MainRoutes () {
               ></Route>
               <Route exact path='/jersey' element={<JerseyPage />}></Route>
               <Route exact path='/matchs' element={<MatchPage />}></Route>
+              <Route exact path='/live' element={<Matchlist />}></Route>
               <Route
                 exact
                 path='/transfer-request'
